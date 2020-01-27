@@ -65,4 +65,4 @@ async function fill_cash_journals_handler(req, res) {
   res.json({ createdCashJournals });
 }
 
-module.exports = { fill_cash_journals_handler };
+module.exports = fill_cash_journals_handler;
