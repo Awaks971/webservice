@@ -16,13 +16,7 @@ async function create_company_handler(req, res, next) {
   } = create_company;
 
   // Retrieve user who wanted to create a company
-  const owner = await getCompanyOwner({ userId });
-
-  // Verify if user exist in database
-  if (!owner.id) {
-    res.status(404).send("Owner not found");
-    return;
-  }
+  const owner = await getCompanyOwner(res, { userId });
 
   // Create the company
   await DB.queryAsync(`
@@ -37,12 +31,12 @@ async function create_company_handler(req, res, next) {
     .json({ message: "Company created successfully", companyId });
 }
 
-async function getCompanyOwner({ userId }) {
+async function getCompanyOwner(res, { userId }) {
   // Retrieve user by ID
   const [owner] = await DB.queryAsync(`SELECT INTO users WHERE id="${userId}"`);
 
   // Throw error if no user found
-  if (!owner.id) throw new Error("User not found");
+  if (!owner.id) res.status(404).send("No user found with this ID");
 
   return owner;
 }
