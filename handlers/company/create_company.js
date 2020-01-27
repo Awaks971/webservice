@@ -33,7 +33,9 @@ async function create_company_handler(req, res, next) {
 
 async function getCompanyOwner(res, { userId }) {
   // Retrieve user by ID
-  const [owner] = await DB.queryAsync(`SELECT INTO users WHERE id="${userId}"`);
+  const [owner] = await DB.queryAsync(
+    `SELECT id FROM users WHERE id="${userId}"`
+  );
 
   // Throw error if no user found
   if (!owner.id) res.status(404).send("No user found with this ID");
