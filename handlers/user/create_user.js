@@ -28,7 +28,7 @@ async function create_user_handler(req, res, next) {
 
   try {
     // Create date for created & updated fields
-    const today = new Date();
+    const today = new Date().toLocaleDateString();
 
     // Create the user
     await DB.queryAsync(`
