@@ -4,7 +4,7 @@ async function create_company_handler(req, res, next) {
   const { create_company } = req.body;
   const {
     raisonSociale: name,
-    NuméroSiret: siret,
+    NumeroSiret: siret,
     uuid_Personne: userId,
     uuid_societe: companyId,
     Telephone: phone,
