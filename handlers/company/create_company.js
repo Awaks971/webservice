@@ -25,7 +25,7 @@ async function create_company_handler(req, res, next) {
   }
 
   // Create the company
-  const created_company = await DB.queryAsync(`
+  await DB.queryAsync(`
     INSERT INTO company
         (id, name, siret, owner, phone, postalCode, city, country, address, email)  
     VALUES 
@@ -39,7 +39,7 @@ async function create_company_handler(req, res, next) {
 
 async function getCompanyOwner({ userId }) {
   // Retrieve user by ID
-  const [owner] = await DB.queryAsync(`SELECT INTO users WHERE id=${userId}`);
+  const [owner] = await DB.queryAsync(`SELECT INTO users WHERE id="${userId}"`);
 
   // Throw error if no user found
   if (!owner.id) throw new Error("User not found");
