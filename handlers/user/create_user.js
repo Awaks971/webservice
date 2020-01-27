@@ -16,7 +16,7 @@ async function create_user_handler(req, res, next) {
 
   // Retrieve user to avoid duplicata
   const [potential_user] = await DB.queryAsync(
-    `SELECT id FROM users WHERE id=${userId}`
+    `SELECT id FROM users WHERE id="${userId}"`
   );
 
   // If we got a user with this ID, return
