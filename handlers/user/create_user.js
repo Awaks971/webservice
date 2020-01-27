@@ -1,6 +1,7 @@
 const DB = require("../../config/database");
 
 async function create_user_handler(req, res, next) {
+  const { create_user } = req.body;
   const {
     Prenom: firstname,
     Nom: lastname,
@@ -12,7 +13,7 @@ async function create_user_handler(req, res, next) {
     Email: email,
     DateNaissance: birthdate,
     uuid_Personne: userId
-  } = req.body;
+  } = create_user;
 
   // Retrieve user to avoid duplicata
   const [potential_user] = await DB.queryAsync(

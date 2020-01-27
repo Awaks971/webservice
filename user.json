@@ -1,0 +1,12 @@
+{
+  "Prenom": "firstname",
+  "Nom": "lastname",
+  "Adresse": "address",
+  "CodePostal": "postalCode",
+  "Ville": "city",
+  "Pays": "country",
+  "Telephone": "phone",
+  "Email": "email",
+  "DateNaissance": "birthdate",
+  "uuid_Personne": "userId"
+}

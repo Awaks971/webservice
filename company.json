@@ -1,0 +1,12 @@
+{
+  "raisonSociale": "raisonSociale",
+  "NuméroSiret": "NuméroSiret",
+  "Adresse": "address",
+  "uuid_Personne": "uuid_Personne",
+  "uuid_societe": "uuid_societe",
+  "Telephone": "country",
+  "CodePostal": "CodePostal",
+  "Ville": "Ville",
+  "Pays": "Pays",
+  "Email": "email"
+}
