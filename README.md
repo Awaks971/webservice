@@ -32,7 +32,7 @@ To send an email, follow these steps:
 - Place your data you want to get in your email using `#{my_data_here}` pug templating method ( example: Bonjour #{user_name} )
 - Use the `send_email` function:
 
-```javacrpit
+```javascript
 await send_email({
   to: "my_user@email.com",
   subject: "Welcome",
