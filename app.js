@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require("express");
+const path = require("path");
 const app = express();
 
 const fill_cash_journals_handler = require("./handlers/cash_journal/fill_cash_journals");
@@ -8,6 +9,9 @@ const create_user_handler = require("./handlers/user/create_user");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.set("view engine", "pug");
+app.set("views", path.join(__dirname, "/mails/templates"));
+app.use(express.static(__dirname + "/mails/templates"));
 
 app.post("/fill-cash-journals", fill_cash_journals_handler);
 app.post("/create-company", create_company_handler);

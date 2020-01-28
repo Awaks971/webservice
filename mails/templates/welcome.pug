@@ -1,0 +1,66 @@
+doctype html
+html
+  head
+    block head
+      meta(charset="utf-8")
+      meta(name="viewport", content="width=device-width")
+      meta(http-equiv="X-UA-Compatible", content="IE=edge")
+      meta(name="x-apple-disable-message-reformatting")
+      link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Quicksand:300,500,700&display=swap")
+
+      style(type='text/css').
+        body {
+          margin: 0;
+          padding: 0;
+          font-family: "Quicksand", sans-sérif;
+        }
+        .wrapper {
+          background: linear-gradient(
+              135deg,
+              rgba(255, 241, 0, 1) 0%,
+              rgba(255, 107, 0, 1) 100%
+            )
+            no-repeat;
+          height: 100%;
+          padding: 5%;
+        }
+
+        .title {
+          font-size: 40px;
+          font-weight: 900;
+        }
+
+        .description {
+          font-size: 16px;
+          font-weight: 300;
+          color: #848484;
+        }
+
+        .card {
+          margin: 2%;
+          padding: 2% 5%;
+          background-color: #fff;
+
+          border-top-left-radius: 40px;
+          border-bottom-right-radius: 40px;
+        }
+
+        .highlight {
+          color: #ff6b00;
+          font-weight: 500;
+        }
+  body
+    div.wrapper
+      div.card
+        h1.title Bienvenue !
+        p.description Bonjour 
+          span.highlight #{name}
+        p.description Merci d'avoir rejoins le dashboard d'Awaks  
+        p.description Voici vos identifiant: 
+        ul.highlight
+          li email : #{email}
+          li mot de passe : #{password}
+
+        p.description Ses identifiants sont strictement confidentiels. Ne les partager en aucun cas à des tiers 
+
+
