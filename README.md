@@ -44,3 +44,6 @@ await send_email({
   }
 });
 ```
+
+> Notice that the root directory to get a template is already set in `./mails/templates`.
+> All you have to do is create your template in this folder and just call the name in the `send_email` function
