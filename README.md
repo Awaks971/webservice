@@ -22,6 +22,8 @@ We have group all of our handlers by features.
 
 For example, in `./handlers/user` we have some functions that allow us to create/update a user. Basicly, in each folder in `./handlers` you have a `C.R.U.D.` in.
 
+In `./handlers/ressources` you can find examples of what you can send to use the handlers, like create a user or a company
+
 # Mails
 
 We are using `nodemailer-promise` to send emails to our users. We had create a `send_email` function that allow us to send emails easly with a `OAuth2` verification with a `refreshToken` and `accessToken`.
