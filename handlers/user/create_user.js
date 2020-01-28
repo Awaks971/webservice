@@ -3,7 +3,6 @@ const send_email = require("../../mails/transporter");
 const bcrypt = require("bcryptjs");
 
 async function create_user_handler(req, res, next) {
-  const { create_user } = req.body;
   const {
     Prenom: firstname,
     Nom: lastname,
@@ -15,7 +14,7 @@ async function create_user_handler(req, res, next) {
     Email: email,
     DateNaissance: birthdate,
     uuid_Personne: userId
-  } = create_user;
+  } = req.body;
 
   // Retrieve user to avoid duplicata
   const [potential_user] = await DB.queryAsync(
@@ -46,9 +45,9 @@ async function create_user_handler(req, res, next) {
     // Create the user
     await DB.queryAsync(`
     INSERT INTO users
-        (id, firstname, lastname, address, postalCode, city, country, phone, email, birthdate, created_at, updated_at, crypted_password)  
+        (id, firstname, lastname, address, postalCode, city, country, phone, email, birthdate, created_at, updated_at, crypted_password, role)  
     VALUES 
-        ("${userId}","${firstname}","${lastname}","${address}","${postalCode}", "${city}","${country}","${phone}","${email}", "${birthdate}", "${today}","${today}", "${crypted_password}")    
+        ("${userId}","${firstname}","${lastname}","${address}","${postalCode}", "${city}","${country}","${phone}","${email}", "${birthdate}", "${today}","${today}", "${crypted_password}", "client")    
     `);
 
     // Send a welcome email when user is created
