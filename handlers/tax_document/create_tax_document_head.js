@@ -1,9 +1,9 @@
 const DB = require("../../config/database");
 
 async function create_tax_documents_head(req, res, next) {
-  const { tax_documents } = req.body;
+  const { tax_documents_head } = req.body;
 
-  const sanitizeDocuments = sanitizeTaxDocument(tax_documents);
+  const sanitizeDocuments = sanitizeTaxDocument(tax_documents_head);
   const taxKeys = sanitizeDocuments.map(value => Object.keys(value))[0];
   const taxValues = sanitizeDocuments.map(value => Object.values(value));
 
@@ -15,27 +15,26 @@ async function create_tax_documents_head(req, res, next) {
     await DB.queryAsync(SQLQuery, [taxValues]);
     return res
       .status(200)
-      .json({ message: "Company created successfully", companyId });
+      .json({ message: "Tax documents head filled successfully" });
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
 }
 
-// (
-//     "${tax_document_id}","${uuid_journal_caisse}","${tax_document_code}","${date}","${dead_line}", "${total_ht}","${total_ttc}",
-//     "${total_tva}","${rate_fees}","${total_fees}","${profit}","${omr_tax_price}","${ss_tax_price}","${is_credit}", "${lines_count}",
-//     "${articles_count}","${paid_price}","${client_id}","${canceled_articles}", "${discount_rate}","${employe_code}","${company_id}"
-// )
-
 /**
  * Display each keys to make a INSERT query
  */
 function displayTaxKeys(keys) {
-  return keys.map((key, index) => {
-    if (index === keys.length - 1) return `${key}`;
-
-    return `${key},`;
+  let query = "";
+  keys.map((key, index) => {
+    if (index === keys.length - 1) {
+      query += key;
+    } else {
+      query += `${key},`;
+    }
   });
+
+  return query;
 }
 
 /**
@@ -46,7 +45,7 @@ function displayTaxKeys(keys) {
 function sanitizeTaxDocument(array) {
   return array.map(
     ({
-      uuid_journal_caisse,
+      uuid_journal_caisse: cash_journal_id,
       uuid_document_fiscale: tax_document_id,
       Numero: tax_document_code,
       DateHeure: date,
@@ -69,7 +68,7 @@ function sanitizeTaxDocument(array) {
       nomUtilisateur: employe_code,
       uuid_magasin: company_id
     }) => ({
-      uuid_journal_caisse,
+      cash_journal_id,
       tax_document_id,
       tax_document_code,
       date,

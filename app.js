@@ -17,7 +17,8 @@ const {
  * Handlers
  */
 const fill_cash_journals_handler = require("./handlers/cash_journal/fill_cash_journals");
-const create_tax_documents_head = require("./handlers/tax_document/create_tax_documents_head");
+const create_tax_documents_head = require("./handlers/tax_document/create_tax_document_head");
+const create_tax_document_lines = require("./handlers/tax_document/create_tax_document_lines");
 const create_company_handler = require("./handlers/company/create_company");
 const create_user_handler = require("./handlers/user/create_user");
 
@@ -47,7 +48,8 @@ app.set("views", path.join(__dirname, "/mails/templates"));
  * Users routes to store their data in dashboard database
  */
 app.post("/fill-cash-journals", fill_cash_journals_handler);
-app.post("/fill-tax-documents", create_tax_documents_head);
+app.post("/fill-tax-documents-head", create_tax_documents_head);
+app.post("/fill-tax-document-lines", create_tax_document_lines);
 
 /**
  * Technician routes to create users and companies
