@@ -1,0 +1,98 @@
+const DB = require("../../config/database");
+
+async function create_tax_documents_head(req, res, next) {
+  const { tax_documents } = req.body;
+
+  const sanitizeDocuments = sanitizeTaxDocument(tax_documents);
+  const taxKeys = sanitizeDocuments.map(value => Object.keys(value))[0];
+  const taxValues = sanitizeDocuments.map(value => Object.values(value));
+
+  const SQLQuery = `
+    INSERT INTO tax_document_head (${displayTaxKeys(taxKeys)}) VALUES ?
+    `;
+
+  try {
+    await DB.queryAsync(SQLQuery, [taxValues]);
+    return res
+      .status(200)
+      .json({ message: "Company created successfully", companyId });
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+}
+
+// (
+//     "${tax_document_id}","${uuid_journal_caisse}","${tax_document_code}","${date}","${dead_line}", "${total_ht}","${total_ttc}",
+//     "${total_tva}","${rate_fees}","${total_fees}","${profit}","${omr_tax_price}","${ss_tax_price}","${is_credit}", "${lines_count}",
+//     "${articles_count}","${paid_price}","${client_id}","${canceled_articles}", "${discount_rate}","${employe_code}","${company_id}"
+// )
+
+/**
+ * Display each keys to make a INSERT query
+ */
+function displayTaxKeys(keys) {
+  return keys.map((key, index) => {
+    if (index === keys.length - 1) return `${key}`;
+
+    return `${key},`;
+  });
+}
+
+/**
+ * The data who come from the TPV is not clear
+ * So I decide to change keys name
+ * with something that's easy to read (and not in french)
+ */
+function sanitizeTaxDocument(array) {
+  return array.map(
+    ({
+      uuid_journal_caisse,
+      uuid_document_fiscale: tax_document_id,
+      Numero: tax_document_code,
+      DateHeure: date,
+      Echeance: dead_line,
+      TotalHT: total_ht,
+      TotalTtc: total_ttc,
+      TotalTva: total_tva,
+      TauxFrais: rate_fees,
+      TotalFrais: total_fees,
+      TotalRevient: profit,
+      TotalOMR: omr_tax_price,
+      TotalSS: ss_tax_price,
+      estAvoir: is_credit,
+      nbLigne: lines_count,
+      nbArticle: articles_count,
+      Totalreg: paid_price,
+      uuid_Client: client_id,
+      tannul: canceled_articles,
+      pRemise: discount_rate,
+      nomUtilisateur: employe_code,
+      uuid_magasin: company_id
+    }) => ({
+      uuid_journal_caisse,
+      tax_document_id,
+      tax_document_code,
+      date,
+      dead_line,
+      total_ht,
+      total_ttc,
+      total_tva,
+      rate_fees,
+      total_fees,
+      profit,
+      omr_tax_price,
+      ss_tax_price,
+      is_credit,
+      lines_count,
+      articles_count,
+      paid_price,
+      client_id,
+      canceled_articles,
+      discount_rate,
+      employe_code,
+      company_id
+    })
+  );
+}
+
+module.exports = create_tax_documents_head;
