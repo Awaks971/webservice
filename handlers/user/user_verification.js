@@ -11,11 +11,14 @@ async function user_verification(req, res, next) {
   const [potential_user] = await DB.queryAsync(
     `SELECT id, status FROM users WHERE id="${userId}"`
   );
-  if (!potential_user.id) {
+
+  console.log(potential_user);
+  if (!potential_user || !potential_user.id) {
     res
       .status(401)
       .json({ message: "Unknown user", error_code: "USER_NOT_FOUND" });
     res.end();
+    return;
   }
   if (potential_user.status === user_status.WAITING) {
     res.status(403).json({
@@ -24,14 +27,16 @@ async function user_verification(req, res, next) {
       error_code: "USER_WAITING_FOR_VALIDATION"
     });
     res.end();
+    return;
   }
-  if (potential_user.status === user_status.LOCEKD) {
+  if (potential_user.status === user_status.LOCKED) {
     res.status(403).json({
       message:
         "This user account is is locked by awaks, please contact awaks support",
       error_code: "LOCKED_USER"
     });
     res.end();
+    return;
   }
 
   res.status(200).json({
