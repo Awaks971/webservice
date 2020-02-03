@@ -7,10 +7,10 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const helmet = require("helmet");
-const limiter = require("./config/limiter");
+const limiter = require("./middlewares/limiter");
 const {
-  user_verification,
-  technician_verification
+  technician_verification_middleware,
+  user_verification_middleware
 } = require("./config/auth_verification");
 
 /**
@@ -21,6 +21,7 @@ const create_tax_documents_head = require("./handlers/tax_document/create_tax_do
 const create_tax_document_lines = require("./handlers/tax_document/create_tax_document_lines");
 const create_company_handler = require("./handlers/company/create_company");
 const create_user_handler = require("./handlers/user/create_user");
+const user_verification_handler = require("./handlers/user/user_verification");
 
 /**
  * Some security
@@ -44,12 +45,26 @@ app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "/mails/templates"));
 
+app.post("/check-user-validity", user_verification_handler);
+
 /**
  * Users routes to store their data in dashboard database
  */
-app.post("/fill-cash-journals", fill_cash_journals_handler);
-app.post("/fill-tax-documents-head", create_tax_documents_head);
-app.post("/fill-tax-document-lines", create_tax_document_lines);
+app.post(
+  "/fill-cash-journals",
+  user_verification_middleware,
+  fill_cash_journals_handler
+);
+app.post(
+  "/fill-tax-documents-head",
+  user_verification_middleware,
+  create_tax_documents_head
+);
+app.post(
+  "/fill-tax-document-lines",
+  user_verification_middleware,
+  create_tax_document_lines
+);
 
 /**
  * Technician routes to create users and companies
