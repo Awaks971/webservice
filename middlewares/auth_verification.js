@@ -1,4 +1,4 @@
-const DB = require("./database");
+const DB = require("../config/database");
 
 async function user_verification_middleware(req, res, next) {
   const { uuid_Personne: userId } = req.body;

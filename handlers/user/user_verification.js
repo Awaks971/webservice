@@ -1,4 +1,4 @@
-const DB = require("./database");
+const DB = require("../../config/database");
 
 const user_status = {
   VALIDATED: "VALIDATED",
@@ -39,3 +39,5 @@ async function user_verification(req, res, next) {
     error_code: null
   });
 }
+
+module.exports = user_verification;

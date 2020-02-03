@@ -11,7 +11,7 @@ const limiter = require("./middlewares/limiter");
 const {
   technician_verification_middleware,
   user_verification_middleware
-} = require("./config/auth_verification");
+} = require("./middlewares/auth_verification");
 
 /**
  * Handlers
