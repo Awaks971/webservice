@@ -30,6 +30,7 @@ async function send_email({ to, subject, template, email_data = {} }) {
    */
   const mailOptions = {
     from: AWAKS_GMAIL_USER,
+    sender: "Awaks",
     to: to,
     subject: subject, // Subject line
     html: pug.renderFile(`${__dirname}/templates/${template}`, {
