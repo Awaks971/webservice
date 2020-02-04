@@ -10,14 +10,14 @@ async function user_verification_middleware(req, res, next) {
       .status(401)
       .json({ message: "Unknown user", error_code: "USER_NOT_FOUND" });
   }
-  if (potential_user.status === user_status.WAITING) {
+  if (potential_user.status === "WAITING") {
     res.status(403).json({
       message:
         "This user is waiting for an admin validation, please contact awaks support",
       error_code: "USER_WAITING_FOR_VALIDATION"
     });
   }
-  if (potential_user.status === user_status.LOCEKD) {
+  if (potential_user.status === "LOCKED") {
     res.status(403).json({
       message:
         "This user account is is locked by awaks, please contact awaks support",
