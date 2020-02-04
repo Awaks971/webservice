@@ -34,11 +34,13 @@ async function create_company_handler(req, res, next) {
           ("${companyId}","${name}","${siret}","${owner.id}","${phone}", "${postalCode}","${city}","${country}","${address}", "${email}")    
     `);
 
-    await res
+    return res
       .status(200)
       .json({ message: "Company created successfully", companyId });
   } catch (err) {
-    throw new Error(err);
+    return res
+      .status(500)
+      .json({ message: err.message, error_code: "BAD_RESPONSE" });
   }
 }
 
