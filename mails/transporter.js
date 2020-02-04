@@ -1,5 +1,5 @@
-const { config } = require("nodemailer-promise");
-const { renderFile } = require("pug");
+const transport = require("nodemailer-promise");
+const pug = require("pug");
 
 const { AWAKS_GMAIL_USER } = process.env;
 
@@ -13,7 +13,7 @@ async function send_email({
   /**
    * Create the mail transporter
    */
-  const transporter = config({
+  const transporter = transport.config({
     host: "smtp.gmail.com",
     port: 465,
     secure: true,
@@ -38,7 +38,7 @@ async function send_email({
     from: AWAKS_GMAIL_USER,
     to: to,
     subject: subject, // Subject line
-    html: renderFile(`${__dirname}/templates/${template}`, {
+    html: pug.renderFile(`${__dirname}/templates/${template}`, {
       ...email_data
     }),
     jsonTransport: true,
@@ -70,4 +70,4 @@ async function send_email({
   }
 }
 
-export default send_email;
+module.exports = send_email;

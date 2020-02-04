@@ -39,4 +39,4 @@ async function send_welcome({ email, firstname, uncrypted_password }) {
   });
 }
 
-export default send_welcome;
+module.exports = send_welcome;
