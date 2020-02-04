@@ -6,7 +6,7 @@
   "main": "src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node -r dotenv/config app.js",
+    "start": "nodemon --exec \"node -r esm -r dotenv/config\" src/app.js",
     "dev": "npm run watch",
     "watch": "nodemon --exec \"node -r esm -r dotenv/config\"  --watch src ."
   },
