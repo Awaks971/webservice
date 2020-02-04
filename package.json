@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "description": "",
-  "main": "src/app.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run watch",
     "dev": "npm run watch",
-    "watch": "nodemon --exec \"node -r esm -r dotenv/config\"  --watch src ."
+    "watch": "nodemon --exec \"node -r esm -r dotenv/config\"  --watch src app.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
