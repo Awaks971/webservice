@@ -8,4 +8,4 @@ const limiter = rateLimit({
   max: 10
 });
 
-module.exports = limiter;
+export default limiter;

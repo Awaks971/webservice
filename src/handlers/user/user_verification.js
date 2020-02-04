@@ -12,7 +12,6 @@ async function user_verification(req, res, next) {
     `SELECT id, status FROM users WHERE id="${userId}"`
   );
 
-  console.log(potential_user);
   if (!potential_user || !potential_user.id) {
     res
       .status(401)

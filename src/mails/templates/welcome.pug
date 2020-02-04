@@ -82,13 +82,13 @@ html
         }
   body
     div.wrapper
-      img(src=`http://localhost:3000/static/awaks_banner.png`, alt="awaks_banner")
+      img(src=`cid:@awaks_banner`, alt="awaks_banner")
       
       div.content_wrapper
         h1.title Félicitation ! Vous avez rejoins le dashboard
         p.subtitle Commencez à l'utiliser dès maintenant
 
-        img(src="http://localhost:3000/static/dashboard_screenshot.png", style='border: 1px solid #51515160')
+        img(src="cid:@dashboard_screenshot", style='border: 1px solid #51515160')
 
         p.description Bonjour 
           span.highlight #{name}
@@ -99,23 +99,23 @@ html
           li.description mot de passe :
             span.highlight #{password}
 
-        p.title(style="margin-bottom: 55px") Comment utiliser le dashboard ? 
+        //- p.title(style="margin-bottom: 55px") Comment utiliser le dashboard ? 
 
-        div.steps 
-          span.icon
-            img(src="./lock.svg" style="width: 40px")
-          p(style="text-align: center; color: #515151; font-weight: 300") Clôturer vos caisse comme vous en avez l'habitude
-        div.steps 
-          span.icon
-            img(src="./send.svg" style="width: 40px")
-          p(style="text-align: center; color: #515151; font-weight: 300") Toutes les informations de vôtre journée seront envoyé sur votre espace  
+        //- div.steps 
+        //-   span.icon
+        //-     img(src="cid:@lock" style="width: 40px")
+        //-   p(style="text-align: center; color: #515151; font-weight: 300") Clôturer vos caisse comme vous en avez l'habitude
+        //- div.steps 
+        //-   span.icon
+        //-     img(src="cid:@send" style="width: 40px")
+        //-   p(style="text-align: center; color: #515151; font-weight: 300") Toutes les informations de vôtre journée seront envoyé sur votre espace  
 
-        div.steps 
-          span.icon
-            img(src="./eye.svg" style="width: 40px")
-          p(style="text-align: center; color: #515151; font-weight: 300") Consultez les données de votre société  
+        //- div.steps 
+        //-   span.icon
+        //-     img(src="cid:@eye" style="width: 40px")
+        //-   p(style="text-align: center; color: #515151; font-weight: 300") Consultez les données de votre société  
 
-      img(src="http://localhost:3000/static/awaks_footer.png", alt="awaks_footer")
+      img(src="cid:@awaks_footer", alt="awaks_footer")
 
 
 

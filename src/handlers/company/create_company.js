@@ -1,6 +1,8 @@
 const DB = require("../../config/database");
 
 async function create_company_handler(req, res, next) {
+  const { create_company } = req.body;
+
   const {
     raisonSociale: name,
     NumeroSiret: siret,
@@ -12,7 +14,7 @@ async function create_company_handler(req, res, next) {
     Pays: country,
     Adresse: address,
     Email: email
-  } = req.body;
+  } = create_company;
 
   // Retrieve user who wanted to create a company
   const owner = await getCompanyOwner(res, { userId });

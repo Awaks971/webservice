@@ -1,13 +1,19 @@
-const nodemailer = require("nodemailer-promise");
-const pug = require("pug");
+import { config } from "nodemailer-promise";
+import { renderFile } from "pug";
 
 const { AWAKS_GMAIL_USER } = process.env;
 
-async function send_email({ to, subject, template, email_data = {} }) {
+async function send_email({
+  to,
+  subject,
+  template,
+  email_data = {},
+  attachments
+}) {
   /**
    * Create the mail transporter
    */
-  const transporter = nodemailer.config({
+  const transporter = config({
     host: "smtp.gmail.com",
     port: 465,
     secure: true,
@@ -33,9 +39,24 @@ async function send_email({ to, subject, template, email_data = {} }) {
     sender: "Awaks",
     to: to,
     subject: subject, // Subject line
-    html: pug.renderFile(`${__dirname}/templates/${template}`, {
+    html: renderFile(`${__dirname}/templates/${template}`, {
       ...email_data
-    })
+    }),
+    jsonTransport: true,
+    attachments: [
+      {
+        filename: "awaks_banner.png",
+        path: `${__dirname}/static/awaks_banner.png`,
+        cid: "@awaks_banner",
+        contentTransferEncoding: "base64"
+      },
+      {
+        filename: "awaks_footer.png",
+        path: `${__dirname}/static/awaks_footer.png`,
+        cid: "@awaks_footer",
+        contentTransferEncoding: "base64"
+      }
+    ].concat(attachments)
   };
 
   /**
@@ -50,4 +71,4 @@ async function send_email({ to, subject, template, email_data = {} }) {
   }
 }
 
-module.exports = send_email;
+export default send_email;

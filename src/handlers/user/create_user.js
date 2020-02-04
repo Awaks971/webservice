@@ -1,8 +1,9 @@
 const DB = require("../../config/database");
-const send_email = require("../../mails/transporter");
+const send_welcome = require("../../mails/handlers/welcome");
 const bcrypt = require("bcryptjs");
 
 async function create_user_handler(req, res, next) {
+  const { create_user } = req.body;
   const {
     Prenom: firstname,
     Nom: lastname,
@@ -14,7 +15,7 @@ async function create_user_handler(req, res, next) {
     Email: email,
     DateNaissance: birthdate,
     uuid_Personne: userId
-  } = req.body;
+  } = create_user;
 
   // Retrieve user to avoid duplicata
   const [potential_user] = await DB.queryAsync(
@@ -51,15 +52,10 @@ async function create_user_handler(req, res, next) {
     `);
 
     // Send a welcome email when user is created
-    await send_email({
-      to: email,
-      subject: "Bienvenue sur le dashboard d'Awaks",
-      template: "welcome.pug",
-      email_data: {
-        name: firstname,
-        email: email,
-        password: uncrypted_password
-      }
+    await send_welcome({
+      name: firstname,
+      email: email,
+      password: uncrypted_password
     });
 
     // Return success message
