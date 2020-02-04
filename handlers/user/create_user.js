@@ -59,7 +59,7 @@ async function create_user_handler(req, res, next) {
     });
 
     // Return success message
-    return res.status(200).json({
+    res.status(200).json({
       message: "User created successfully",
       userId: userId
     });

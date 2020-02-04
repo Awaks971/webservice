@@ -27,9 +27,7 @@ async function create_company_handler(req, res, next) {
         ("${companyId}","${name}","${siret}","${owner.id}","${phone}", "${postalCode}","${city}","${country}","${address}", "${email}")    
   `);
 
-  return res
-    .status(200)
-    .json({ message: "Company created successfully", companyId });
+  res.status(200).json({ message: "Company created successfully", companyId });
 }
 
 async function getCompanyOwner(res, { userId }) {
