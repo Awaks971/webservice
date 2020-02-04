@@ -3,25 +3,25 @@ require("dotenv").config();
 /**
  * Modules
  */
-import express, { json, urlencoded } from "express";
-import { join } from "path";
-import helmet from "helmet";
-import limiter from "./middlewares/limiter";
-import {
+const express, { json, urlencoded } = require ("express");
+const { join } = require ("path");
+const helmet = require ("helmet");
+const limiter = require ("./middlewares/limiter");
+const {
   technician_verification_middleware,
   user_verification_middleware
-} from "./middlewares/auth_verification";
+} = require ("./middlewares/auth_verification");
 
 /**
  * Handlers
  */
-import fill_cash_journals_handler from "./handlers/cash_journal/fill_cash_journals";
-import create_tax_documents_head from "./handlers/tax_document/create_tax_document_head";
-import create_tax_document_lines from "./handlers/tax_document/create_tax_document_lines";
-import create_company_handler from "./handlers/company/create_company";
-import create_user_handler from "./handlers/user/create_user";
-import user_verification_handler from "./handlers/user/user_verification";
-import send_welcome from "./mails/handlers/welcome";
+const fill_cash_journals_handler = require ("./handlers/cash_journal/fill_cash_journals");
+const create_tax_documents_head = require ("./handlers/tax_document/create_tax_document_head");
+const create_tax_document_lines = require ("./handlers/tax_document/create_tax_document_lines");
+const create_company_handler = require ("./handlers/company/create_company");
+const create_user_handler = require ("./handlers/user/create_user");
+const user_verification_handler = require ("./handlers/user/user_verification");
+const send_welcome = require ("./mails/handlers/welcome");
 
 const app = express();
 

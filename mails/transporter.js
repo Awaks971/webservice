@@ -1,5 +1,5 @@
-import { config } from "nodemailer-promise";
-import { renderFile } from "pug";
+const { config } = require("nodemailer-promise");
+const { renderFile } = require("pug");
 
 const { AWAKS_GMAIL_USER } = process.env;
 

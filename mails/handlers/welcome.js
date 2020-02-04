@@ -1,4 +1,4 @@
-import send_email from "../transporter";
+const send_email = require("../transporter");
 
 async function send_welcome({ email, firstname, uncrypted_password }) {
   await send_email({
