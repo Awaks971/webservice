@@ -19,21 +19,27 @@ async function create_company_handler(req, res, next) {
   // Retrieve user who wanted to create a company
   const owner = await getCompanyOwner(res, { userId });
 
-  if (!owner) {
+  if (!owner || !owner.id) {
     res
       .status(404)
       .json({ message: "Unknown user", error_code: "USER_NOT_FOUND" });
     return;
   }
-  // Create the company
-  await DB.queryAsync(`
-    INSERT INTO company
-        (id, name, siret, owner, phone, postalCode, city, country, address, email)  
-    VALUES 
-        ("${companyId}","${name}","${siret}","${owner.id}","${phone}", "${postalCode}","${city}","${country}","${address}", "${email}")    
-  `);
+  try {
+    // Create the company
+    await DB.queryAsync(`
+      INSERT INTO company
+          (id, name, siret, owner, phone, postalCode, city, country, address, email)  
+      VALUES 
+          ("${companyId}","${name}","${siret}","${owner.id}","${phone}", "${postalCode}","${city}","${country}","${address}", "${email}")    
+    `);
 
-  res.status(200).json({ message: "Company created successfully", companyId });
+    res
+      .status(200)
+      .json({ message: "Company created successfully", companyId });
+  } catch (err) {
+    throw new Error(err);
+  }
 }
 
 async function getCompanyOwner(res, { userId }) {
