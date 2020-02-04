@@ -51,11 +51,13 @@ async function create_user_handler(req, res, next) {
         ("${userId}","${firstname}","${lastname}","${address}","${postalCode}", "${city}","${country}","${phone}","${email}", "${birthdate}", "${today}","${today}", "${crypted_password}", "client")    
     `);
 
+    console.log(uncrypted_password);
+
     // Send a welcome email when user is created
     await send_welcome({
       name: firstname,
       email: email,
-      password: uncrypted_password
+      uncrypted_password: uncrypted_password
     });
 
     // Return success message
