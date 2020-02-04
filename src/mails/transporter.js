@@ -36,7 +36,6 @@ async function send_email({
    */
   const mailOptions = {
     from: AWAKS_GMAIL_USER,
-    sender: "Awaks",
     to: to,
     subject: subject, // Subject line
     html: renderFile(`${__dirname}/templates/${template}`, {
