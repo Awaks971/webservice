@@ -2,8 +2,8 @@ const DB = require("../../config/database");
 const send_welcome = require("../../mails/handlers/welcome");
 const bcrypt = require("bcryptjs");
 
-async function create_user_handler(req, res, next) {
-  const { payload: create_user } = req.body;
+async function create_user_handler(req, res) {
+  const { payload: create_user, uuid_societe: userId } = req.body;
   const {
     Prenom: firstname,
     Nom: lastname,
@@ -13,8 +13,7 @@ async function create_user_handler(req, res, next) {
     Pays: country,
     Telephone: phone,
     Email: email,
-    DateNaissance: birthdate,
-    uuid_societe: userId
+    DateNaissance: birthdate
   } = create_user;
 
   // Retrieve user to avoid duplicata

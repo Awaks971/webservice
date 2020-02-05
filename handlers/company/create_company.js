@@ -1,12 +1,11 @@
 const DB = require("../../config/database");
 
 async function create_company_handler(req, res, next) {
-  const { payload: create_company } = req.body;
+  const { payload: create_company, uuid_societe: userId } = req.body;
 
   const {
     raisonSociale: name,
     NumeroSiret: siret,
-    uuid_societe: userId,
     uuid_magasin: companyId,
     Telephone: phone,
     CodePostal: postalCode,
