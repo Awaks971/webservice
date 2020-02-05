@@ -1,8 +1,6 @@
 const DB = require("../config/database");
 
 async function user_verification_middleware(req, res, next) {
-  let userId = null;
-
   const { uuid_societe: userId } = req.body;
 
   if (!userId) {
