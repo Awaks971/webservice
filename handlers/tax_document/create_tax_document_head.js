@@ -1,7 +1,7 @@
 const DB = require("../../config/database");
 
 async function create_tax_documents_head(req, res, next) {
-  const { tax_documents_head } = req.body;
+  const { payload: tax_documents_head } = req.body;
 
   const sanitizeDocuments = sanitizeTaxDocument(tax_documents_head);
   const taxKeys = sanitizeDocuments.map(value => Object.keys(value))[0];

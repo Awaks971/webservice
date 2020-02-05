@@ -1,7 +1,7 @@
 const DB = require("../../config/database");
 
 async function create_tax_document_lines(req, res, next) {
-  const { tax_document_lines } = req.body;
+  const { payload: tax_document_lines } = req.body;
 
   const sanitizeDocuments = sanitizeTaxDocument(tax_document_lines);
   const lineKeys = sanitizeDocuments.map(value => Object.keys(value))[0];

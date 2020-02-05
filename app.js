@@ -74,6 +74,6 @@ app.post(
 app.post("/create-company", create_company_handler);
 app.post("/create-user", create_user_handler);
 
-app.listen(3000, function() {
-  console.log("Example app listening on port 3000!");
+app.listen(4200, function() {
+  console.log("App listening on port 4200!");
 });
