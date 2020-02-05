@@ -1,24 +1,18 @@
 const DB = require("../config/database");
 
 async function user_verification_middleware(req, res, next) {
-  const {
-    payload: { uuid_societe: companyId }
-  } = req.body;
+  let userId = null;
 
-  const [potential_company] = await DB.queryAsync(
-    `SELECT id, owner FROM company WHERE id="${companyId}"`
-  );
+  const { payload } = req.body;
 
-  if (!potential_company || !potential_company.id) {
-    res
-      .status(401)
-      .json({ message: "Unknown company", error_code: "COMPANY_NOT_FOUND" });
-    res.end();
-    return;
+  if (typeof payload === "array") {
+    userId = payload[0].uuid_societe;
+  } else {
+    userId = payload.uuid_societe;
   }
 
   const [potential_user] = await DB.queryAsync(
-    `SELECT id, status FROM users WHERE id="${potential_company.owner}"`
+    `SELECT id, status FROM users WHERE id="${userId}"`
   );
   if (!potential_user || !potential_user.id) {
     res

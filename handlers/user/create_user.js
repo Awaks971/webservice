@@ -14,7 +14,7 @@ async function create_user_handler(req, res, next) {
     Telephone: phone,
     Email: email,
     DateNaissance: birthdate,
-    uuid_Personne: userId
+    uuid_societe: userId
   } = create_user;
 
   // Retrieve user to avoid duplicata
