@@ -1,9 +1,9 @@
 const DB = require("../config/database");
 
 async function user_verification_middleware(req, res, next) {
-  const { uuid_magasin: companyId } = req.body;
+  const { uuid_societe: companyId } = req.body;
   const [potential_company] = await DB.queryAsync(
-    `SELECT id, status, owner FROM company WHERE id="${companyId}"`
+    `SELECT id, owner FROM company WHERE id="${companyId}"`
   );
   if (!potential_company || !potential_company.id) {
     res
