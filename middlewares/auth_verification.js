@@ -11,6 +11,16 @@ async function user_verification_middleware(req, res, next) {
     userId = payload.uuid_societe;
   }
 
+  if (!userId) {
+    res.status(500).json({
+      message:
+        "No uuid_societe provided. You have to send `uuid_societe` field in you payload or in your payload array",
+      error_code: "BAD_PAYLOAD"
+    });
+    res.end();
+    return;
+  }
+
   const [potential_user] = await DB.queryAsync(
     `SELECT id, status FROM users WHERE id="${userId}"`
   );
