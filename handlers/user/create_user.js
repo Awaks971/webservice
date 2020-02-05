@@ -3,7 +3,7 @@ const send_welcome = require("../../mails/handlers/welcome");
 const bcrypt = require("bcryptjs");
 
 async function create_user_handler(req, res, next) {
-  const { create_user } = req.body;
+  const { payload: create_user } = req.body;
   const {
     Prenom: firstname,
     Nom: lastname,
