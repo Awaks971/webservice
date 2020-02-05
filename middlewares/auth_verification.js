@@ -3,13 +3,7 @@ const DB = require("../config/database");
 async function user_verification_middleware(req, res, next) {
   let userId = null;
 
-  const { payload } = req.body;
-
-  if (typeof payload === "array") {
-    userId = payload[0].uuid_societe;
-  } else {
-    userId = payload.uuid_societe;
-  }
+  const { uuid_societe: userId } = req.body;
 
   if (!userId) {
     res.status(500).json({
