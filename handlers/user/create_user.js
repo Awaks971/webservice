@@ -16,18 +16,32 @@ async function create_user_handler(req, res) {
     DateNaissance: birthdate
   } = create_user;
 
+  if (!email) {
+    res.status(400).json({
+      message: "Cannot create a user without an email",
+      error_code: "EMPTY_EMAIL"
+    });
+  }
+
   // Retrieve user to avoid duplicata
   const [potential_user] = await DB.queryAsync(
-    `SELECT id FROM users WHERE id="${userId}"`
+    `SELECT id, email FROM users WHERE id="${userId}"`
   );
+
+  if (potential_user && potential_user.email === email) {
+    res.status(409).json({
+      message: `This email already exist for a user in the database --> ${email}`,
+      error_code: "USER_ALREADY_EXIST"
+    });
+    return;
+  }
 
   // If we got a user with this ID, return
   if (potential_user && potential_user.id) {
-    res.status(409).send(`
-      Already has this user in database. 
-      You have to patch the user instead. 
-      userId --> ${potential_user.id}
-    `);
+    res.status(409).json({
+      message: `Already has this user in database. You have to patch the user instead. userId --> ${potential_user.id}`,
+      error_code: "USER_ALREADY_EXIST"
+    });
     return;
   }
 
