@@ -16,6 +16,13 @@ async function create_company_handler(req, res, next) {
     email
   } = create_company;
 
+  if (!email) {
+    return res.status(400).json({
+      message: "Need a email to create a default user",
+      error_code: "EMPTY_EMAIL"
+    });
+  }
+
   try {
     // Create the company
     await DB.queryAsync(`
