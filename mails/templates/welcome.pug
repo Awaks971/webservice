@@ -15,25 +15,48 @@ html
           font-family: "Quicksand", sans-sérif;
         }
         .wrapper {
-          background: linear-gradient(
-              135deg,
-              rgba(255, 241, 0, 1) 0%,
-              rgba(255, 107, 0, 1) 100%
-            )
-            no-repeat;
+          width: 100%;
           height: 100%;
           padding: 5%;
+          max-width: 600px;
         }
 
+        .content_wrapper {
+          width: 90%;
+          height: 100%;
+
+          margin: 0 auto;
+        }
+
+        img {
+          width: auto;
+          height: auto;
+          display:block;
+          max-width: 100%;
+        }
+
+
         .title {
-          font-size: 40px;
-          font-weight: 900;
+          font-size: 19px;
+          font-weight: 500;
+          text-align: center;
+          margin-top: 35px;
+          margin-bottom: 5px;
+        }
+
+        .subtitle {
+          font-size: 17px;
+          font-weight: 300;
+          text-align: center;
+          color: #515151;
+          margin-top: 5px;
+          margin-bottom: 55px;
         }
 
         .description {
           font-size: 16px;
           font-weight: 300;
-          color: #848484;
+          color: #515151;
         }
 
         .card {
@@ -51,14 +74,14 @@ html
         }
   body
     div.wrapper
-<<<<<<< HEAD:src/mails/templates/welcome.pug
       img(src=`cid:@awaks_banner`, alt="awaks_banner")
       
       div.content_wrapper
         h1.title Félicitation ! Vous avez rejoins le dashboard
         p.subtitle Commencez à l'utiliser dès maintenant
 
-        img(src="cid:@dashboard_screenshot", style='border: 1px solid #51515160')
+        img(src=`cid:@dashboard_screenshot`, alt="awaks_banner")
+
 
         p.description Bonjour 
           span.highlight #{name}
@@ -85,20 +108,8 @@ html
         //-     img(src="cid:@eye" style="width: 40px")
         //-   p(style="text-align: center; color: #515151; font-weight: 300") Consultez les données de votre société  
 
-      img(src="cid:@awaks_footer", alt="awaks_footer")
+        img(src="cid:@awaks_footer", alt="awaks_footer")
 
-=======
-      div.card
-        h1.title Bienvenue !
-        p.description Bonjour 
-          span.highlight #{name}
-        p.description Merci d'avoir rejoins le dashboard d'Awaks  
-        p.description Voici vos identifiant: 
-        ul.highlight
-          li email : #{email}
-          li mot de passe : #{password}
->>>>>>> parent of ca89d76... Review welcome email --> TODO: Use a CDN:mails/templates/welcome.pug
 
-        p.description Ses identifiants sont strictement confidentiels. Ne les partager en aucun cas à des tiers 
 
 

@@ -13,7 +13,7 @@ async function send_welcome({ email, firstname, uncrypted_password }) {
     attachments: [
       {
         filename: "dashboard_screenshot.png",
-        path: `./src/mails/static/dashboard_screenshot.png`,
+        path: `./mails/static/dashboard_screenshot.png`,
         cid: "@dashboard_screenshot",
         contentTransferEncoding: "base64"
       }
