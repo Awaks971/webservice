@@ -19,9 +19,8 @@ const fill_cash_journals_handler = require("./handlers/cash_journal/fill_cash_jo
 const create_tax_documents_head = require("./handlers/tax_document/create_tax_document_head");
 const create_tax_document_lines = require("./handlers/tax_document/create_tax_document_lines");
 const create_company_handler = require("./handlers/company/create_company");
-const create_user_handler = require("./handlers/user/create_user");
+const create_store_handler = require("./handlers/store/create_store_handler");
 const user_verification_handler = require("./handlers/user/user_verification");
-const send_welcome = require("./mails/handlers/welcome");
 
 const app = express();
 
@@ -72,7 +71,7 @@ app.post(
  * Technician routes to create users and companies
  */
 app.post("/create-company", create_company_handler);
-app.post("/create-user", create_user_handler);
+app.post("/create-store", create_store_handler);
 
 app.listen(4200, function() {
   console.log("App listening on port 4200!");
