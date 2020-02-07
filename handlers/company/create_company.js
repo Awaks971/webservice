@@ -1,54 +1,55 @@
 const DB = require("../../config/database");
+const create_user_handler = require("../user/create_user");
 
 async function create_company_handler(req, res, next) {
-  const { payload: create_company, uuid_societe: userId } = req.body;
+  const { payload: create_company } = req.body;
 
   const {
-    raisonSociale: name,
-    NumeroSiret: siret,
-    uuid_magasin: companyId,
-    Telephone: phone,
-    CodePostal: postal_code,
-    Ville: city,
-    Pays: country,
-    Adresse: address,
-    Email: email
+    id,
+    name,
+    siret,
+    address,
+    postal_code,
+    city,
+    country,
+    phone,
+    email
   } = create_company;
 
-  // Retrieve user who wanted to create a company
-  const owner = await getCompanyOwner({ userId });
-
-  if (!owner || !owner.id) {
-    res
-      .status(404)
-      .json({ message: "Unknown user", error_code: "USER_NOT_FOUND" });
-    return;
-  }
   try {
     // Create the company
     await DB.queryAsync(`
       INSERT INTO company
-          (id, name, siret, owner, phone, postal_code, city, country, address, email)  
+          (id, name, siret, phone, postal_code, city, country, address, email)  
       VALUES 
-          ("${companyId}","${name}","${siret}","${owner.id}","${phone}", "${postal_code}","${city}","${country}","${address}", "${email}")    
+          ("${id}","${name}","${siret}","${phone}", "${postal_code}","${city}","${country}","${address}", "${email}")    
     `);
+
+    const default_user = {
+      email,
+      company_id: id,
+      role: "client",
+      status: "waiting"
+    };
+
+    const { error_code, message } = await create_user_handler({
+      user: default_user
+    });
+
+    if (error_code) {
+      return res.status(500).json({ message, error_code });
+    }
 
     return res
       .status(200)
-      .json({ message: "Company created successfully", companyId });
+      .json({ message: "Company created successfully", company_id: id });
   } catch (err) {
+    console.log("company", err);
+
     return res
       .status(500)
-      .json({ message: err.message, error_code: "BAD_RESPONSE" });
+      .json({ message: err.message, error_code: "SQL_ERROR" });
   }
-}
-
-async function getCompanyOwner({ userId }) {
-  // Retrieve user by ID
-  const [owner] = await DB.queryAsync(
-    `SELECT id FROM user WHERE id="${userId}"`
-  );
-  return owner;
 }
 
 module.exports = create_company_handler;
