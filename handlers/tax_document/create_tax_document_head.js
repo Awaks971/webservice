@@ -8,7 +8,7 @@ async function create_tax_documents_head(req, res, next) {
   const taxValues = sanitizeDocuments.map(value => Object.values(value));
 
   const SQLQuery = `
-    INSERT INTO tax_document_head (${displayTaxKeys(taxKeys)}) VALUES ?
+    INSERT INTO receipt_head (${displayTaxKeys(taxKeys)}) VALUES ?
     `;
 
   try {

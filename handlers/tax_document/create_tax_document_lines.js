@@ -8,7 +8,7 @@ async function create_tax_document_lines(req, res, next) {
   const lineValues = sanitizeDocuments.map(value => Object.values(value));
 
   const SQLQuery = `
-    INSERT INTO tax_document_lines (${displayTaxKeys(lineKeys)}) VALUES ?
+    INSERT INTO receipt_line (${displayTaxKeys(lineKeys)}) VALUES ?
     `;
 
   try {

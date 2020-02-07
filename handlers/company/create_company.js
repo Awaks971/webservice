@@ -9,7 +9,7 @@ async function create_company_handler(req, res, next) {
     uuid_Personne: userId,
     uuid_societe: companyId,
     Telephone: phone,
-    CodePostal: postalCode,
+    CodePostal: postal_code,
     Ville: city,
     Pays: country,
     Adresse: address,
@@ -22,9 +22,9 @@ async function create_company_handler(req, res, next) {
   // Create the company
   await DB.queryAsync(`
     INSERT INTO company
-        (id, name, siret, owner, phone, postalCode, city, country, address, email)  
+        (id, name, siret, owner, phone, postal_code, city, country, address, email)  
     VALUES 
-        ("${companyId}","${name}","${siret}","${owner.id}","${phone}", "${postalCode}","${city}","${country}","${address}", "${email}")    
+        ("${companyId}","${name}","${siret}","${owner.id}","${phone}", "${postal_code}","${city}","${country}","${address}", "${email}")    
   `);
 
   res.status(200).json({ message: "Company created successfully", companyId });

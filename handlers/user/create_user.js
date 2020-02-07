@@ -19,7 +19,7 @@ async function create_user_handler(req, res, next) {
 
   // Retrieve user to avoid duplicata
   const [potential_user] = await DB.queryAsync(
-    `SELECT id FROM users WHERE id="${userId}"`
+    `SELECT id FROM user WHERE id="${userId}"`
   );
 
   // If we got a user with this ID, return
@@ -45,10 +45,10 @@ async function create_user_handler(req, res, next) {
 
     // Create the user
     await DB.queryAsync(`
-    INSERT INTO users
-        (id, firstname, lastname, address, postalCode, city, country, phone, email, birthdate, created_at, updated_at, crypted_password, role)  
+    INSERT INTO user
+        (id, firstname, lastname, email, created_at, updated_at, crypted_password, role)  
     VALUES 
-        ("${userId}","${firstname}","${lastname}","${address}","${postalCode}", "${city}","${country}","${phone}","${email}", "${birthdate}", "${today}","${today}", "${crypted_password}", "client")    
+        ("${userId}","${firstname}","${lastname}","${email}", "${today}","${today}", "${crypted_password}", "client")    
     `);
 
     // Send a welcome email when user is created
