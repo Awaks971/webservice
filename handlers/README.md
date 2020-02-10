@@ -69,7 +69,7 @@
 ```graphql
 # https://progys.me/fill-receipt-head - POST
 {
-    payload: {
+    payload: [{
         id: ID!                     # ID du ticket
         store_id: ID!               # ID du magasin
         company_id: ID!             # ID de la société
@@ -86,7 +86,7 @@
         canceled_lines: Int         # Nombre de lignes annulées
         discount_rate: Float        # Taux de la remise
         lines_count: Int            # Nombres de lignes
-    },
+    }, { ... }],
     company_id: String!             # ID de la société --> Nécessaire a la vérification de chaque requêtes
 }
 ```
@@ -96,7 +96,7 @@
 ```graphql
 # https://progys.me/fill-receipt-lines - POST
 {
-    payload: {
+    payload: [{
         id: ID!                     # ID du ticket
         receipt_id: ID!             # ID du ticket
         amount_ttc: Float           # Montant TTC
@@ -112,7 +112,7 @@
         line_position: Int          # Position de la ligne sur le ticket
         purchase_price: Float       # Prix d'achat du produit
         sell_price: Float           # Prix de vente du produit
-    },
+    }, { ... }],
     company_id: String!             # ID de la société --> Nécessaire a la vérification de chaque requêtes
 }
 ```

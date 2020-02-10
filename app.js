@@ -68,7 +68,7 @@ app.post(
 );
 
 /**
- * Technician routes to create users and companies
+ * Technician routes to create stores and companies
  */
 app.post("/create-company", create_company_handler);
 app.post("/create-store", create_store_handler);
