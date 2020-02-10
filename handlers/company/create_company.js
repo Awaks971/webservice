@@ -23,6 +23,18 @@ async function create_company_handler(req, res, next) {
     });
   }
 
+  // Retrieve user to avoid duplicata
+  const [potential_company] = await DB.queryAsync(
+    `SELECT id FROM company WHERE id="${id}"`
+  );
+
+  if (potential_company && potential_company.id) {
+    throw new Error({
+      message: "A company already exist with this ID",
+      error_code: "COMPANY_ALREADY_EXIST"
+    });
+  }
+
   try {
     // Create the company
     await DB.queryAsync(`
