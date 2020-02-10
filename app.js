@@ -57,12 +57,12 @@ app.post(
   fill_cash_journals_handler
 );
 app.post(
-  "/fill-tax-documents-head",
+  "/fill-receipt-head",
   user_verification_middleware,
   create_tax_documents_head
 );
 app.post(
-  "/fill-tax-document-lines",
+  "/fill-receipt-lines",
   user_verification_middleware,
   create_tax_document_lines
 );

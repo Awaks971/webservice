@@ -4,15 +4,15 @@
 # https://progys.me/create-company - POST
 {
     payload: {
-        id: ID!
-        name: String!
-        siret: ID!
-        address: String
-        postal_code: String
-        city: String
-        country: String
-        phone: String
-        email: String
+        id: ID!                 # ID de la société
+        name: String!           # Nom de la société
+        siret: ID!              # Siret de la société
+        address: String         # Adresse (line_1)
+        postal_code: String     # Code postal
+        city: String            # Ville de la société
+        country: String         # Pays
+        phone: String           # Téléphone
+        email: String           # Email
     },
 }
 
@@ -27,16 +27,16 @@
 # https://progys.me/create-store - POST
 {
     payload: {
-        id: ID!
-        name: String!
-        siret: ID!
-        address: String
-        postal_code: String
-        city: String
-        country: String
-        phone: String
-        email: String
-        company_id: String
+        id: ID!                 # ID du magasin
+        name: String!           # Nom du magasin
+        siret: ID!              # Siret du magasin
+        address: String         # Adresse (line_1)
+        postal_code: String     # Code postal
+        city: String            # Ville du magasin
+        country: String         # Pays
+        phone: String           # Téléphone
+        email: String           # Email
+        company_id: String      # ID de la société
     },
 }
 
@@ -48,20 +48,76 @@
 # https://progys.me/fill-cash-journals - POST
 {
     payload: {
-        id: ID!
-        store_id: ID!
-        company_id: ID!
-        date: String
-        amount_ttc: Float
-        amount_ht: Float
-        basket_median: Float
-        canceled_lines: Int
-        profit_amount: Float
-        profit_rate: Float
-        articles_count: Int
-        receipts_count: Int
+        id: ID!                     # ID du journal de caisse
+        store_id: ID!               # ID du magasin
+        company_id: ID!             # ID de la société
+        date: String                # Date du journal
+        amount_ttc: Float           # Montant TTC
+        amount_ht: Float            # Montant HT
+        discounts_counts: Int       # Nombre de remises
+        basket_median: Float        # Panier moyen
+        canceled_lines: Int         # Lignes annulé
+        profit_amount: Float        # Montant de la marge
+        profit_rate: Float          # Taux de la marge
+        articles_count: Int         # Nombres d'articles
+        receipts_count: Int         # Nombres de tickets
     },
-    company_id: String
+    company_id: String!             # ID de la société --> Nécessaire a la vérification de chaque requêtes
+}
+
+```
+
+## En-tête de tickets
+
+```graphql
+# https://progys.me/fill-receipt-head - POST
+{
+    payload: {
+        id: ID!                     # ID du ticket
+        store_id: ID!               # ID du magasin
+        company_id: ID!             # ID de la société
+        date: String                # Date du journal
+        amount_ttc: Float           # Montant TTC
+        amount_ht: Float            # Montant HT
+        amount_vat: Float           # Montant de la TVA
+        profit: Float               # Montant de la marge
+        articles_count: Int         # Nombres d'articles
+        client_id: ID               # ID du client
+        seller_id: ID               # ID du vendeur
+        fees_rate: Float            # Taux des frais
+        cash_journal_id: ID         # ID du journal de caisse
+        canceled_lines: Int         # Nombre de lignes annulées
+        discount_rate: Float        # Taux de la remise
+        lines_count: Int            # Nombres de lignes
+    },
+    company_id: String!             # ID de la société --> Nécessaire a la vérification de chaque requêtes
+}
+
+```
+
+## Lignes de tickets
+
+```graphql
+# https://progys.me/fill-receipt-lines - POST
+{
+    payload: {
+        id: ID!                     # ID du ticket
+        receipt_id: ID!             # ID du ticket
+        amount_ttc: Float           # Montant TTC
+        amount_ht: Float            # Montant HT
+        amount_vat: Float           # Montant de la TVA
+        amount_discount: Float      # Montant de la remise
+        label: String               # Désignation du produit
+        label_extra: String         # Désignation extra
+        article_id: ID              # ID de l'article
+        articles_count: Int         # Nombres d'articles
+        profit: Float               # Montant de la marge
+        canceled_lines: Int         # Nombre de lignes annulées
+        line_position: Int          # Position de la ligne sur le ticket
+        purchase_price: Float       # Prix d'achat du produit
+        sell_price: Float           # Prix de vente du produit
+    },
+    company_id: String!             # ID de la société --> Nécessaire a la vérification de chaque requêtes
 }
 
 ```
