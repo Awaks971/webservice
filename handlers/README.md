@@ -15,7 +15,6 @@
         email: String           # Email
     },
 }
-
 ```
 
 > Note: Quand tu crée une company, je crée un utilisateur par défault avec l'email de la company
@@ -39,7 +38,6 @@
         company_id: String      # ID de la société
     },
 }
-
 ```
 
 ## Journal de caisses
@@ -64,7 +62,6 @@
     },
     company_id: String!             # ID de la société --> Nécessaire a la vérification de chaque requêtes
 }
-
 ```
 
 ## En-tête de tickets
@@ -92,7 +89,6 @@
     },
     company_id: String!             # ID de la société --> Nécessaire a la vérification de chaque requêtes
 }
-
 ```
 
 ## Lignes de tickets
@@ -119,5 +115,4 @@
     },
     company_id: String!             # ID de la société --> Nécessaire a la vérification de chaque requêtes
 }
-
 ```
