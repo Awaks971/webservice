@@ -3,63 +3,65 @@ const DB = require("../../config/database");
 async function fill_cash_journals_handler(req, res) {
   const { payload: cash_journals } = req.body;
   const {
-    uuid_journal_caisse,
-    TOTttc,
-    TOTht,
-    stat_nb_ticket,
-    stat_panier_moy,
-    stat_nb_annul,
-    stat_nb_remise,
-    stat_nb_art_promo,
-    stat_nb_retour,
-    stat_temps_travail,
-    stat_pmarge,
-    stat_mnt_marge,
-    stat_nb_article,
-    dateJournal,
-    lastUpdate,
-    uuid_magasin
+    id,
+    store_id,
+    company_id,
+    date,
+    amount_ttc,
+    amount_ht,
+    discounts_counts,
+    basket_median,
+    canceled_lines,
+    profit_amount,
+    profit_rate,
+    articles_count,
+    receipts_count
   } = cash_journals;
-  const createdCashJournals = await DB.queryAsync(`
+
+  try {
+    await DB.queryAsync(`
       INSERT INTO journal_caisse 
           (
-              uuid_journal_caisse,
-              CA_TTC,
-              CA_HT,
-              stat_nb_ticket,
-              stat_panier_moy,
-              stat_nb_annul,
-              stat_nb_remise,
-              stat_nb_art_promo,
-              stat_nb_retour,
-              stat_temps_travail,
-              stat_pmarge,
-              stat_mnt_marge,
-              stat_nb_article,
-              dateJournal,
-              lastUpdate,
-              companyId
+            id,
+            store_id,
+            company_id,
+            date,
+            amount_ttc,
+            amount_ht,
+            discounts_counts,
+            basket_median,
+            canceled_lines,
+            profit_amount,
+            profit_rate,
+            articles_count,
+            receipts_count
           ) 
       VALUES 
           (
-              "${uuid_journal_caisse}",
-              "${TOTttc}",
-              "${TOTht}",
-              "${stat_nb_ticket}",
-              "${stat_panier_moy}",
-              "${stat_nb_annul}",
-              "${stat_nb_remise}",
-              "${stat_nb_art_promo}",
-              "${stat_nb_retour}",
-              "${stat_temps_travail}",
-              "${stat_pmarge}",
-              "${stat_mnt_marge}",
-              "${stat_nb_article}",
-              "${dateJournal}",
-              "${lastUpdate}",
-              "${uuid_magasin}"
+            "${id}",
+            "${store_id}",
+            "${company_id}",
+            "${date}",
+            "${amount_ttc}",
+            "${amount_ht}",
+            "${discounts_counts}",
+            "${basket_median}",
+            "${canceled_lines}",
+            "${profit_amount}",
+            "${profit_rate}",
+            "${articles_count}",
+            "${receipts_count}"
           )
     `);
+
+    return res
+      .status(200)
+      .json({ message: "Cash journal filled successfully", error_code: null });
+  } catch (err) {
+    return res
+      .status(500)
+      .json({ message: err.message, error_code: "SQL_ERROR" });
+  }
 
   res.json({ createdCashJournals });
 }
