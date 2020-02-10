@@ -1,3 +1,7 @@
+# Handlers
+
+All of this handlers have to be executed with a POST method. They had approximatively the same structure, a `payload` and `company_id`, expect the company and store creation who doesn't need the `company_id` field. This field is used to check company validity for each request. If the provided company_id isn't recognized by the database, you'll get a 401 - Unauthorized response.
+
 ## Société
 
 ```graphql

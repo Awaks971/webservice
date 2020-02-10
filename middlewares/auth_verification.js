@@ -1,12 +1,12 @@
 const DB = require("../config/database");
 
 async function user_verification_middleware(req, res, next) {
-  const { uuid_societe: userId } = req.body;
+  const { company_id } = req.body;
 
-  if (!userId) {
+  if (!company_id) {
     res.status(500).json({
       message:
-        "No uuid_societe provided. You have to send `uuid_societe` field in you payload or in your payload array",
+        "No company_id provided. You have to send `company_id` field in you payload or in your payload array",
       error_code: "BAD_PAYLOAD"
     });
     res.end();
@@ -14,7 +14,7 @@ async function user_verification_middleware(req, res, next) {
   }
 
   const [potential_user] = await DB.queryAsync(
-    `SELECT id, status FROM users WHERE id="${userId}"`
+    `SELECT id, status FROM users WHERE company_id="${company_id}"`
   );
   if (!potential_user || !potential_user.id) {
     res
