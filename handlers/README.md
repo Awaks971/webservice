@@ -1,4 +1,4 @@
-## Creation d'une company
+## Société
 
 ```graphql
 # https://progys.me/create-company - POST
@@ -21,7 +21,7 @@
 > Note: Quand tu crée une company, je crée un utilisateur par défault avec l'email de la company
 > **Important**: Il faut que l'email soit valide pour recevoir un email avec le mot de passe. Si l'email est pas valide, la requêtes tourne sans fin (je ne m'assur pas encore de la validité d'un email)
 
-## Creation d'un magasin
+## Magasin
 
 ```graphql
 # https://progys.me/create-store - POST
@@ -42,7 +42,7 @@
 
 ```
 
-## Cash journals
+## Journal de caisses
 
 ```graphql
 # https://progys.me/fill-cash-journals - POST
