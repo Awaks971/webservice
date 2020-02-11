@@ -15,9 +15,10 @@ html
           font-family: "Quicksand", sans-sérif;
         }
         .wrapper {
+          width: 100%;
           height: 100%;
           padding: 5%;
-          max-width: 500px;     
+          max-width: 600px;     
           margin: 0 auto;
         }
 
@@ -44,15 +45,6 @@ html
           margin-bottom: 5px;
         }
 
-        .subtitle {
-          font-size: 17px;
-          font-weight: 300;
-          text-align: center;
-          color: #515151;
-          margin-top: 5px;
-          margin-bottom: 55px;
-        }
-
         .description {
           font-size: 16px;
           font-weight: 300;
@@ -61,14 +53,6 @@ html
           line-height: 150%;
         }
 
-        .card {
-          margin: 2%;
-          padding: 2% 5%;
-          background-color: #fff;
-
-          border-top-left-radius: 40px;
-          border-bottom-right-radius: 40px;
-        }
 
         .highlight {
           color: #ff6b00;
@@ -79,22 +63,16 @@ html
       img(src=`cid:@awaks_banner`, alt="awaks_banner")
       
       div.content_wrapper
-      
+        h1.title Nouvel utilisateur créé
 
-        p.description Bonjour 
-          span.highlight #{name}
-        p.description 
-          | Merci d'essayer notre nouvelle solution ! Pour le moment, vous n'avez pas encore accès à votre compte. 
-        p.description 
-          | Vous receverez un e-mail contenant vos identifiants de connexion une fois que nos administrateurs aurons
-          | validés votre compte.
-
-        p.description 
-          | Si vous avez quelconque question, n'hésitez pas à nous contacter sur 
-          span.highlight
-            | info@awaks.fr
-        p.description Cordialement, l'équipe d'Awaks
-
+        p.description Bonjour, un nouvel utilisateur vient d'êre créé. Veuillez le valider
+    
+        li E-mail : 
+           span.highlight toto#{email}  
+        li Société : 
+           span.highlight toto#{company_name}  
+         
+        
       img(src="cid:@awaks_footer", alt="awaks_footer")
 
 

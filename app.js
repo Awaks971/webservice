@@ -21,6 +21,7 @@ const create_receipt_lines = require("./handlers/receipt/create_receipt_lines");
 const create_company_handler = require("./handlers/company/create_company");
 const create_store_handler = require("./handlers/store/create_store_handler");
 const user_verification_handler = require("./handlers/user/user_verification");
+const valid_user_handler = require("./handlers/user/valid-user");
 
 const app = express();
 
@@ -47,6 +48,7 @@ app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "/mails/templates"));
 
 app.post("/check-user-validity", user_verification_handler);
+app.post("/valid-user", user_verification_middleware, valid_user_handler);
 
 /**
  * Users routes to store their data in dashboard database

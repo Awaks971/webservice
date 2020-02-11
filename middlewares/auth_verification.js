@@ -14,7 +14,7 @@ async function user_verification_middleware(req, res, next) {
   }
 
   const [potential_user] = await DB.queryAsync(
-    `SELECT id, status FROM users WHERE company_id="${company_id}"`
+    `SELECT id, status FROM user WHERE company_id="${company_id}"`
   );
   if (!potential_user || !potential_user.id) {
     res

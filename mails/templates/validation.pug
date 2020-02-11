@@ -15,9 +15,10 @@ html
           font-family: "Quicksand", sans-sérif;
         }
         .wrapper {
+          width: 100%;
           height: 100%;
           padding: 5%;
-          max-width: 500px;     
+          max-width: 600px;     
           margin: 0 auto;
         }
 
@@ -79,22 +80,28 @@ html
       img(src=`cid:@awaks_banner`, alt="awaks_banner")
       
       div.content_wrapper
-      
+        h1.title Félicitation ! Vous avez rejoins le dashboard
+        p.subtitle Commencez à l'utiliser dès maintenant
+
+        img(src=`cid:@dashboard_screenshot`, alt="dashboard_screenshot")
+
 
         p.description Bonjour 
           span.highlight #{name}
         p.description 
-          | Merci d'essayer notre nouvelle solution ! Pour le moment, vous n'avez pas encore accès à votre compte. 
+          | Merci d'essayer notre nouvelle solution !
         p.description 
-          | Vous receverez un e-mail contenant vos identifiants de connexion une fois que nos administrateurs aurons
-          | validés votre compte.
-
+          | Voici vos identifiants de connexion : 
+        ul
+            li E-mail : 
+               span.highlight toto#{email}  
+            li Mot de passe : 
+               span.highlight tatatatat#{password}  
+            
         p.description 
-          | Si vous avez quelconque question, n'hésitez pas à nous contacter sur 
-          span.highlight
-            | info@awaks.fr
+          | Lors de votre première connexion, vous serez amené a modifier votre mot de passe
+          | pour quelque chose de plus personnel. Nous inviterons également a confirmer quelques informations à votre sujet
         p.description Cordialement, l'équipe d'Awaks
-
       img(src="cid:@awaks_footer", alt="awaks_footer")
 
 

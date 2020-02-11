@@ -8,7 +8,7 @@ async function send_email({
   subject,
   template,
   email_data = {},
-  attachments
+  attachments = []
 }) {
   /**
    * Create the mail transporter
@@ -41,19 +41,16 @@ async function send_email({
     html: pug.renderFile(`${__dirname}/templates/${template}`, {
       ...email_data
     }),
-    jsonTransport: true,
     attachments: [
       {
         filename: "awaks_banner.png",
         path: `${__dirname}/static/awaks_banner.png`,
-        cid: "@awaks_banner",
-        contentTransferEncoding: "base64"
+        cid: "@awaks_banner"
       },
       {
         filename: "awaks_footer.png",
         path: `${__dirname}/static/awaks_footer.png`,
-        cid: "@awaks_footer",
-        contentTransferEncoding: "base64"
+        cid: "@awaks_footer"
       }
     ].concat(attachments)
   };

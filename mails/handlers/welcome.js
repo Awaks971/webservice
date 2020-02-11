@@ -1,41 +1,14 @@
 const send_email = require("../transporter");
 
-async function send_welcome({ email, firstname, uncrypted_password }) {
+async function send_welcome({ email, name }) {
   await send_email({
     to: email,
     subject: "Bienvenue sur le dashboard d'Awaks",
     template: "welcome.pug",
     email_data: {
-      name: firstname,
-      email: email,
-      password: uncrypted_password
+      name: name
     },
-    attachments: [
-      {
-        filename: "dashboard_screenshot.png",
-        path: `./mails/static/dashboard_screenshot.png`,
-        cid: "@dashboard_screenshot",
-        contentTransferEncoding: "base64"
-      }
-      // {
-      //   filename: "eye.svg",
-      //   path: `./src/mails/static/eye.svg`,
-      //   cid: "@eye",
-      //   contentTransferEncoding: "base64"
-      // },
-      // {
-      //   filename: "lock.svg",
-      //   path: `./src/mails/static/lock.svg`,
-      //   cid: "@lock",
-      //   contentTransferEncoding: "base64"
-      // },
-      // {
-      //   filename: "send.svg",
-      //   path: `./src/mails/static/send.svg`,
-      //   cid: "@send",
-      //   contentTransferEncoding: "base64"
-      // }
-    ]
+    attachments: []
   });
 }
 
