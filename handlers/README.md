@@ -5,7 +5,7 @@ All of this handlers have to be executed with a POST method. They had approximat
 ## Vérifier la validité d'un utilisateur
 
 ```graphql
-# https://progys.me/check-user-validity - POST
+# https://progys.me/check-company-validity - POST
 {
     company_id: ID!,
 }

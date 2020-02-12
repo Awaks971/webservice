@@ -47,7 +47,7 @@ app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "/mails/templates"));
 
-app.post("/check-user-validity", user_verification_handler);
+app.post("/check-company-validity", user_verification_handler);
 app.post("/valid-user", user_verification_middleware, valid_user_handler);
 
 /**
