@@ -45,8 +45,7 @@ async function user_verification(req, res) {
   }
 
   return res.status(200).json({
-    message: "Known user, feel free to store your data :)",
-    error_code: null
+    message: "Known user, feel free to store your data :)"
   });
 }
 

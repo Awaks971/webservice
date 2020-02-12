@@ -11,7 +11,13 @@ async function send_validation({ email, name, password }) {
       email: email,
       password: password
     },
-    attachments: []
+    attachments: [
+      {
+        filename: "dashboard_screenshot.png",
+        path: `${__dirname}/static/dashboard_screenshot.png`,
+        cid: "@dashboard_screenshot"
+      }
+    ]
   });
   console.log("Email sended !");
 }
