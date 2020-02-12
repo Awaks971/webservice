@@ -8,13 +8,7 @@ async function send_welcome({ email, name }) {
     email_data: {
       name: name
     },
-    attachments: [
-      {
-        filename: "dashboard_screenshot.png",
-        path: `${__dirname}/static/dashboard_screenshot.png`,
-        cid: "@dashboard_screenshot"
-      }
-    ]
+    attachments: []
   });
 }
 

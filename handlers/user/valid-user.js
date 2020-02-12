@@ -26,11 +26,13 @@ async function valid_user_handler(req, res) {
     );
 
     // Send a welcome email when user is created
-    await send_validation({
+    const response = await send_validation({
       name: company.name,
       email: user.email,
       password: uncrypted_password
     });
+
+    console.log(response);
 
     return res.status(200).json({
       message: "User successfully updated",

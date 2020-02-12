@@ -1,7 +1,7 @@
 const send_email = require("../transporter");
 
 async function send_validation({ email, name, password }) {
-  console.log("Sending email...");
+  console.log(`Sending email to : ${email} ...`);
   await send_email({
     to: email,
     subject: "Bienvenue sur le dashboard d'Awaks",
@@ -14,8 +14,9 @@ async function send_validation({ email, name, password }) {
     attachments: [
       {
         filename: "dashboard_screenshot.png",
-        path: `${__dirname}/static/dashboard_screenshot.png`,
-        cid: "@dashboard_screenshot"
+        path: `./mails/static/dashboard_screenshot.png`,
+        cid: "@dashboard_screenshot",
+        contentTransferEncoding: "base64"
       }
     ]
   });
