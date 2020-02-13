@@ -56,14 +56,12 @@ async function fill_cash_journals_handler(req, res) {
 
     return res
       .status(200)
-      .json({ message: "Cash journal filled successfully", error_code: null });
+      .json({ message: "Cash journal filled successfully" });
   } catch (err) {
     return res
       .status(500)
       .json({ message: err.message, error_code: "SQL_ERROR" });
   }
-
-  res.json({ createdCashJournals });
 }
 
 module.exports = fill_cash_journals_handler;
