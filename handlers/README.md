@@ -121,7 +121,7 @@ All of this handlers have to be executed with a POST method. They had approximat
         article_id: ID              # ID de l'article
         articles_count: Int         # Nombres d'articles
         profit: Float               # Montant de la marge
-        canceled_lines: Int         # Nombre de lignes annulées
+        canceled_articles: Int         # Nombre de lignes annulées
         line_position: Int          # Position de la ligne sur le ticket
         purchase_price: Float       # Prix d'achat du produit
         sell_price: Float           # Prix de vente du produit
