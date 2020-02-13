@@ -20,3 +20,5 @@ function insert_sql_builder(array) {
 
   return [SQL, values];
 }
+
+module.exports = insert_sql_builder;
