@@ -65,7 +65,7 @@ All of this handlers have to be executed with a POST method. They had approximat
         date: String                # Date du journal
         amount_ttc: Float           # Montant TTC
         amount_ht: Float            # Montant HT
-        discounts_counts: Int       # Nombre de remises
+        discount_counts: Int       # Nombre de remises
         basket_median: Float        # Panier moyen
         canceled_lines: Int         # Lignes annulé
         profit_amount: Float        # Montant de la marge
