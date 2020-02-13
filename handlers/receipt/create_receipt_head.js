@@ -3,7 +3,7 @@ const insert_sql_builder = require("../helpers/insert_sql_builder");
 
 async function create_tax_documents_head(req, res, next) {
   const { payload: tax_documents_head } = req.body;
-  const [SQL, head] = insert_sql_builder(tax_documents_head);
+  const [SQL, head] = insert_sql_builder(tax_documents_head, "receipt_head");
 
   try {
     await DB.queryAsync(SQL, [head]);
