@@ -20,7 +20,7 @@ async function fill_cash_journals_handler(req, res) {
 
   try {
     await DB.queryAsync(`
-      INSERT INTO journal_caisse 
+      INSERT INTO cash_journal 
           (
             id,
             store_id,
