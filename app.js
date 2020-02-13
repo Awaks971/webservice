@@ -22,6 +22,7 @@ const create_company_handler = require("./handlers/company/create_company");
 const create_store_handler = require("./handlers/store/create_store_handler");
 const user_verification_handler = require("./handlers/user/user_verification");
 const valid_user_handler = require("./handlers/user/valid-user");
+const login_hanlder = require("./handlers/user/login");
 
 const app = express();
 
@@ -49,6 +50,7 @@ app.set("views", path.join(__dirname, "/mails/templates"));
 
 app.post("/check-company-validity", user_verification_handler);
 app.post("/valid-user", user_verification_middleware, valid_user_handler);
+app.post("/login", login_hanlder);
 
 /**
  * Users routes to store their data in dashboard database
