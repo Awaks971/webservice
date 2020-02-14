@@ -65,13 +65,13 @@ All of this handlers have to be executed with a POST method. They had approximat
         date: String                # Date du journal
         amount_ttc: Float           # Montant TTC
         amount_ht: Float            # Montant HT
-        discount_counts: Int       # Nombre de remises
+        discount_count: Int       # Nombre de remises
         basket_median: Float        # Panier moyen
         canceled_lines: Int         # Lignes annulé
         profit_amount: Float        # Montant de la marge
         profit_rate: Float          # Taux de la marge
-        articles_count: Int         # Nombres d'articles
-        receipts_count: Int         # Nombres de tickets
+        article_count: Int         # Nombres d'articles
+        receipt_count: Int         # Nombres de tickets
     },
     company_id: String!             # ID de la société --> Nécessaire a la vérification de chaque requêtes
 }
@@ -84,6 +84,7 @@ All of this handlers have to be executed with a POST method. They had approximat
 {
     payload: [{
         id: ID!                     # ID du ticket
+        receipt_number: String!     # Numéro du ticket
         store_id: ID!               # ID du magasin
         company_id: ID!             # ID de la société
         date: String                # Date du journal
@@ -91,14 +92,14 @@ All of this handlers have to be executed with a POST method. They had approximat
         amount_ht: Float            # Montant HT
         amount_vat: Float           # Montant de la TVA
         profit: Float               # Montant de la marge
-        articles_count: Int         # Nombres d'articles
+        article_count: Int         # Nombres d'articles
         client_id: ID               # ID du client
         seller_id: ID               # ID du vendeur
         fees_rate: Float            # Taux des frais
         cash_journal_id: ID         # ID du journal de caisse
         canceled_lines: Int         # Nombre de lignes annulées
         discount_rate: Float        # Taux de la remise
-        lines_count: Int            # Nombres de lignes
+        line_count: Int            # Nombres de lignes
     }, { ... }],
     company_id: String!             # ID de la société --> Nécessaire a la vérification de chaque requêtes
 }
@@ -115,13 +116,14 @@ All of this handlers have to be executed with a POST method. They had approximat
         amount_ttc: Float           # Montant TTC
         amount_ht: Float            # Montant HT
         amount_vat: Float           # Montant de la TVA
+        vat_rate: Float             # Taux de la TVA
         amount_discount: Float      # Montant de la remise
         label: String               # Désignation du produit
         label_extra: String         # Désignation extra
         article_id: ID              # ID de l'article
-        articles_count: Int         # Nombres d'articles
+        article_count: Int         # Nombres d'articles
         profit: Float               # Montant de la marge
-        canceled_articles: Int         # Nombre de lignes annulées
+        canceled_articles: Int      # Nombre de lignes annulées
         line_position: Int          # Position de la ligne sur le ticket
         purchase_price: Float       # Prix d'achat du produit
         sell_price: Float           # Prix de vente du produit
