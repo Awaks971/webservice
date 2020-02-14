@@ -9,13 +9,13 @@ async function fill_cash_journals_handler(req, res) {
     date,
     amount_ttc,
     amount_ht,
-    discount_counts,
+    discount_count,
     basket_median,
     canceled_lines,
     profit_amount,
     profit_rate,
-    articles_count,
-    receipts_count
+    article_count,
+    receipt_count
   } = cash_journals;
 
   try {
@@ -28,13 +28,13 @@ async function fill_cash_journals_handler(req, res) {
             date,
             amount_ttc,
             amount_ht,
-            discount_counts,
+            discount_count,
             basket_median,
             canceled_lines,
             profit_amount,
             profit_rate,
-            articles_count,
-            receipts_count
+            article_count,
+            receipt_count
           ) 
       VALUES 
           (
@@ -44,13 +44,13 @@ async function fill_cash_journals_handler(req, res) {
             "${date}",
             "${amount_ttc}",
             "${amount_ht}",
-            "${discount_counts}",
+            "${discount_count}",
             "${basket_median}",
             "${canceled_lines}",
             "${profit_amount}",
             "${profit_rate}",
-            "${articles_count}",
-            "${receipts_count}"
+            "${article_count}",
+            "${receipt_count}"
           )
     `);
 
