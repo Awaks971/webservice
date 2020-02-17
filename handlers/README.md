@@ -121,11 +121,15 @@ All of this handlers have to be executed with a POST method. They had approximat
         label: String               # Désignation du produit
         label_extra: String         # Désignation extra
         article_id: ID              # ID de l'article
-        article_count: Int         # Nombres d'articles
+        article_count: Int          # Nombres d'articles
         profit: Float               # Montant de la marge
         canceled_articles: Int      # Nombre de lignes annulées
         line_position: Int          # Position de la ligne sur le ticket
         purchase_price: Float       # Prix d'achat du produit
+        sell_price: Float           # Prix de vente du produit
+        store_id: ID                # ID du magasin
+        date: String                # Date du ticket
+        company_id: ID              # ID de la société
         sell_price: Float           # Prix de vente du produit
     }, { ... }],
     company_id: String!             # ID de la société --> Nécessaire a la vérification de chaque requêtes
