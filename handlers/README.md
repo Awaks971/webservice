@@ -130,7 +130,6 @@ All of this handlers have to be executed with a POST method. They had approximat
         store_id: ID                # ID du magasin
         date: String                # Date du ticket
         company_id: ID              # ID de la société
-        sell_price: Float           # Prix de vente du produit
         payment_choice: String      # Méthode paiement du produit
         family_label: String        # Famille du produit
         family_id: String           # ID de la famille du produit
