@@ -65,13 +65,13 @@ All of this handlers have to be executed with a POST method. They had approximat
         date: String                # Date du journal
         amount_ttc: Float           # Montant TTC
         amount_ht: Float            # Montant HT
-        discount_count: Int       # Nombre de remises
+        discount_count: Int         # Nombre de remises
         basket_median: Float        # Panier moyen
         canceled_lines: Int         # Lignes annulé
         profit_amount: Float        # Montant de la marge
         profit_rate: Float          # Taux de la marge
-        article_count: Int         # Nombres d'articles
-        receipt_count: Int         # Nombres de tickets
+        article_count: Int          # Nombres d'articles
+        receipt_count: Int          # Nombres de tickets
     },
     company_id: String!             # ID de la société --> Nécessaire a la vérification de chaque requêtes
 }
@@ -92,14 +92,14 @@ All of this handlers have to be executed with a POST method. They had approximat
         amount_ht: Float            # Montant HT
         amount_vat: Float           # Montant de la TVA
         profit: Float               # Montant de la marge
-        article_count: Int         # Nombres d'articles
+        article_count: Int          # Nombres d'articles
         client_id: ID               # ID du client
         seller_id: ID               # ID du vendeur
         fees_rate: Float            # Taux des frais
         cash_journal_id: ID         # ID du journal de caisse
         canceled_lines: Int         # Nombre de lignes annulées
         discount_rate: Float        # Taux de la remise
-        line_count: Int            # Nombres de lignes
+        line_count: Int             # Nombres de lignes
     }, { ... }],
     company_id: String!             # ID de la société --> Nécessaire a la vérification de chaque requêtes
 }
@@ -131,6 +131,7 @@ All of this handlers have to be executed with a POST method. They had approximat
         date: String                # Date du ticket
         company_id: ID              # ID de la société
         sell_price: Float           # Prix de vente du produit
+        payment_choice: String      # Prix de vente du produit
     }, { ... }],
     company_id: String!             # ID de la société --> Nécessaire a la vérification de chaque requêtes
 }
