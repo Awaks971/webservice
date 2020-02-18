@@ -132,6 +132,9 @@ All of this handlers have to be executed with a POST method. They had approximat
         company_id: ID              # ID de la société
         sell_price: Float           # Prix de vente du produit
         payment_choice: String      # Méthode paiement du produit
+        familly: String             # Famille du produit
+        seller_id: String           # ID du vendeur
+        seller_name: String         # Nom du vendeur
     }, { ... }],
     company_id: String!             # ID de la société --> Nécessaire a la vérification de chaque requêtes
 }
