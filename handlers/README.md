@@ -131,7 +131,7 @@ All of this handlers have to be executed with a POST method. They had approximat
         date: String                # Date du ticket
         company_id: ID              # ID de la société
         sell_price: Float           # Prix de vente du produit
-        payment_choice: String      # Prix de vente du produit
+        payment_choice: String      # Méthode paiement du produit
     }, { ... }],
     company_id: String!             # ID de la société --> Nécessaire a la vérification de chaque requêtes
 }
