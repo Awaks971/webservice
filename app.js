@@ -38,7 +38,9 @@ app.use(helmet());
  * And to read data in POST request in req.body
  */
 app.use(express.json());
-app.use(express.urlencoded({ extended: true, limit: "5mb" }));
+app.use(
+  express.urlencoded({ limit: "50mb", extended: true, parameterLimit: 50000 })
+);
 
 /**
  * Set view engine on Pug
