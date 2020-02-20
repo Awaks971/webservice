@@ -16,6 +16,7 @@ const {
  * Handlers
  */
 const fill_cash_journals_handler = require("./handlers/cash_journal/fill_cash_journals");
+const fill_payment_journals_handler = require("./handlers/payment_journal/fill_payment_journals");
 const create_receipt_head = require("./handlers/receipt/create_receipt_head");
 const create_receipt_lines = require("./handlers/receipt/create_receipt_lines");
 const create_company_handler = require("./handlers/company/create_company");
@@ -71,6 +72,11 @@ app.post(
   "/fill-receipt-lines",
   user_verification_middleware,
   create_receipt_lines
+);
+app.post(
+  "/fill-payment-journals",
+  user_verification_middleware,
+  fill_payment_journals_handler
 );
 
 /**
