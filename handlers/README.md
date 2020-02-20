@@ -139,3 +139,23 @@ All of this handlers have to be executed with a POST method. They had approximat
     company_id: String!             # ID de la société --> Nécessaire a la vérification de chaque requêtes
 }
 ```
+
+## Journal de règlements
+
+```graphql
+# https://progys.me/fill-payment-journals - POST
+{
+    payload: [{
+        id: ID!                     # ID du mode de règlement
+        receipt_id: ID              # ID du ticket
+        cash_journal_id: ID         # ID du journal de caisse
+        amount_to_paid: Float       # Montant à payé
+        returned_amount: Float      # Montant rendu
+        paid_amount: Float          # Montant payé
+        payment_label: String       # Libellé du règlement
+        receipt_number: String      # Numéro du ticket
+        date: String                # Date du règlement
+    }, { ... }],
+    company_id: String!             # ID de la société --> Nécessaire a la vérification de chaque requêtes
+}
+```
