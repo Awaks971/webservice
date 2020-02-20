@@ -148,6 +148,7 @@ All of this handlers have to be executed with a POST method. They had approximat
     payload: [{
         id: ID!                     # ID du mode de règlement
         receipt_id: ID              # ID du ticket
+        store_id: ID                # ID du magasin
         cash_journal_id: ID         # ID du journal de caisse
         amount_to_paid: Float       # Montant à payé
         returned_amount: Float      # Montant rendu
