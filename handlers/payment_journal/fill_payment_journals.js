@@ -3,13 +3,10 @@ const insert_sql_builder = require("../helpers/insert_sql_builder");
 
 async function create_payment_journals(req, res, next) {
   const { payload: payment_journal } = req.body;
-  const [SQL, payment_journal] = insert_sql_builder(
-    payment_journal,
-    "payment_journal"
-  );
+  const [SQL, payment] = insert_sql_builder(payment_journal, "payment_journal");
 
   try {
-    await DB.queryAsync(SQL, [payment_journal]);
+    await DB.queryAsync(SQL, [payment]);
     return res
       .status(200)
       .json({ message: "Payment journals filled successfully" });
