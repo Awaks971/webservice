@@ -22,14 +22,11 @@ async function create_company_handler(req, res, next) {
       error_code: "EMPTY_EMAIL"
     });
   }
-  console.log("1");
 
   // Retrieve user to avoid duplicata
   const [potential_company] = await DB.queryAsync(
     `SELECT id FROM company WHERE id="${id}"`
   );
-
-  console.log(potential_company);
 
   if (potential_company && potential_company.id) {
     return res.status(409).json({
@@ -49,8 +46,6 @@ async function create_company_handler(req, res, next) {
           ("${id}","${name}","${siret}","${phone}", "${postal_code}","${city}","${country}","${address}", "${email}", "${today}")    
     `);
 
-    console.log("2");
-
     const default_user = {
       email,
       company_id: id,
@@ -63,8 +58,6 @@ async function create_company_handler(req, res, next) {
       user: default_user
     });
 
-    console.log("3", error_code);
-
     if (error_code) {
       return res.status(500).json({ message, error_code });
     }
@@ -73,7 +66,6 @@ async function create_company_handler(req, res, next) {
       .status(200)
       .json({ message: "Company created successfully", company_id: id });
   } catch (err) {
-    console.log(err);
     return res
       .status(500)
       .json({ message: err.response.message, error_code: "SQL_ERROR" });

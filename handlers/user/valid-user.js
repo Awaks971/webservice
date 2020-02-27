@@ -35,8 +35,7 @@ async function valid_user_handler(req, res) {
     console.log(response);
 
     return res.status(200).json({
-      message: "User successfully updated",
-      error_code: null
+      message: "User successfully updated"
     });
   } catch (err) {
     return res

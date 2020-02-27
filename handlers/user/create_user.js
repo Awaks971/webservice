@@ -56,8 +56,7 @@ async function create_user_handler({ user }) {
     });
 
     return {
-      message: "User successfully created",
-      error_code: null
+      message: "User successfully created"
     };
   } catch (err) {
     return res
