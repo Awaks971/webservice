@@ -14,7 +14,7 @@ async function create_user_handler({ user }) {
   } = user;
 
   if (!email) {
-    throw new Error({
+    return res.status(409).json({
       message: "Cannot create user without email",
       error_code: "EMPTY_EMAIL"
     });
@@ -26,7 +26,7 @@ async function create_user_handler({ user }) {
   );
 
   if (potential_user && potential_user.email === email) {
-    throw new Error({
+    return res.status(409).json({
       message: "A user already exist with this email",
       error_code: "EMAIL_ALREADY_EXIST"
     });
@@ -60,7 +60,9 @@ async function create_user_handler({ user }) {
       error_code: null
     };
   } catch (err) {
-    throw new Error({ message: err.message, error_code: "SQL_ERROR" });
+    return res
+      .status(500)
+      .json({ message: err.message, error_code: "SQL_ERROR" });
   }
 }
 
