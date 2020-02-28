@@ -1,10 +1,20 @@
-FROM node:10.15.3
+# Use the lightest version of NodeJS
+FROM node:10
 
-WORKDIR /server
+RUN mkdir -p /usr/src/app/awaks-websercies
+# Specify working directory
+WORKDIR /usr/src/app/awaks-websercies
 
-COPY package*.json /server
-RUN npm install
+# Copy only the package.json
+COPY package*.json /usr/src/app/awaks-websercies/
 
-COPY . /server
+# Install dependencies
+RUN yarn
 
-CMD ["npm", "run", "dev"]
+# If dependencies are installed, copy the rest of the project
+COPY . /usr/src/app/awaks-websercies
+# Expose app port
+EXPOSE 4200
+
+# Start the application
+RUN yarn dev
