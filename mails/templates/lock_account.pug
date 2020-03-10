@@ -1,0 +1,76 @@
+doctype html
+html
+  head
+    block head
+      meta(charset="utf-8")
+      meta(name="viewport", content="width=device-width")
+      meta(http-equiv="X-UA-Compatible", content="IE=edge")
+      meta(name="x-apple-disable-message-reformatting")
+      link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Quicksand:300,500,700&display=swap")
+
+      style(type='text/css').
+        body {
+          margin: 0;
+          padding: 0;
+          font-family: "Quicksand", sans-sérif;
+        }
+        .wrapper {
+          width: 100%;
+          height: 100%;
+          padding: 5%;
+          max-width: 600px;     
+          margin: 0 auto;
+        }
+
+        .content_wrapper {
+          width: 90%;
+          height: 100%;
+
+          margin: 0 auto;
+        }
+
+        img {
+          width: auto;
+          height: auto;
+          display:block;
+          max-width: 100%;
+        }
+
+
+        .title {
+          font-size: 19px;
+          font-weight: 500;
+          text-align: center;
+          margin-top: 35px;
+          margin-bottom: 5px;
+        }
+
+        .description {
+          font-size: 16px;
+          font-weight: 300;
+          color: #515151;
+
+          line-height: 150%;
+        }
+
+
+        .highlight {
+          color: #ff6b00;
+          font-weight: 500;
+        }
+  body
+    div.wrapper
+      img(src=`cid:@awaks_banner`, alt="awaks_banner")
+      
+      div.content_wrapper
+        h1.title Votre compte a été bloqué
+
+        p.description Bonjour, votre compte vient d'êre bloqué pour trop de tentative incorrect de connexion.
+        p.description Merci de contacter nos services pour résoudre ce problème.
+         
+        
+      img(src="cid:@awaks_footer", alt="awaks_footer")
+
+
+
+

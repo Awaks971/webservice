@@ -62,7 +62,6 @@ async function send_email({
     const result = await transporter(mailOptions);
     return result;
   } catch (error) {
-    console.log("ERROR:", error);
     return error;
   }
 }

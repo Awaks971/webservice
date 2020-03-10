@@ -44,7 +44,6 @@ async function login(req, res, next) {
   user.companies = companies;
   user.stores = stores;
 
-  console.log(user);
   res.json(user);
   next();
 }

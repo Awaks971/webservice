@@ -4,7 +4,8 @@ const {
   AWAKS_MYSQL_HOST,
   AWAKS_MYSQL_USER,
   AWAKS_MYSQL_PASSWORD,
-  AWAKS_MYSQL_DATABASE
+  AWAKS_MYSQL_DATABASE,
+  AWAKS_MYSQL_PORT
 } = process.env;
 
 /**
@@ -15,6 +16,7 @@ const {
 const pool = mysql.createPool({
   host: AWAKS_MYSQL_HOST,
   user: AWAKS_MYSQL_USER,
+  port: AWAKS_MYSQL_PORT,
   password: AWAKS_MYSQL_PASSWORD,
   database: AWAKS_MYSQL_DATABASE,
   connectionLimit: 5

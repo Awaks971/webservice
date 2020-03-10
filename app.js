@@ -23,6 +23,7 @@ const create_company_handler = require("./handlers/company/create_company");
 const create_store_handler = require("./handlers/store/create_store_handler");
 const user_verification_handler = require("./handlers/user/user_verification");
 const valid_user_handler = require("./handlers/user/valid-user");
+const lock_account_handler = require("./handlers/user/lock_user_account");
 const login_hanlder = require("./handlers/user/login");
 
 const app = express();
@@ -78,6 +79,7 @@ app.post(
   user_verification_middleware,
   fill_payment_journals_handler
 );
+app.post("/lock-user-account", lock_account_handler);
 
 /**
  * Technician routes to create stores and companies
