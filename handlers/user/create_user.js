@@ -40,9 +40,9 @@ async function create_user_handler({ user }) {
     // Create the user with waiting stauts and client role by default
     await DB.queryAsync(`
     INSERT INTO user
-        (id, email, created_at, updated_at, role, company_id, status)  
+        (id, email, role, company_id, status)  
     VALUES 
-        ("${user_id}","${email}", "${today}","${today}", "${role}", "${company_id}", "${status}")    
+        ("${user_id}","${email}", "${role}", "${company_id}", "${status}")    
     `);
 
     // Send a welcome email when user is created

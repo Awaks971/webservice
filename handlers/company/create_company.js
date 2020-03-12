@@ -41,9 +41,9 @@ async function create_company_handler(req, res, next) {
     // Create the company
     await DB.queryAsync(`
       INSERT INTO company
-          (id, name, siret, phone, postal_code, city, country, address, email, created_at)  
+          (id, name, siret, phone, postal_code, city, country, address, email)  
       VALUES 
-          ("${id}","${name}","${siret}","${phone}", "${postal_code}","${city}","${country}","${address}", "${email}", "${today}")    
+          ("${id}","${name}","${siret}","${phone}", "${postal_code}","${city}","${country}","${address}", "${email}")    
     `);
 
     const default_user = {
