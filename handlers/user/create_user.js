@@ -34,20 +34,13 @@ async function create_user_handler({ user, res }) {
 
   try {
     const user_id = uuid();
-    const uncrypted_password = Math.random()
-      .toString(26)
-      .slice(2);
 
-    console.log(uncrypted_password);
-
-    // Crypt the password to store it in database
-    const crypted_password = await bcrypt.hash(uncrypted_password, 10);
     // Create the user with waiting stauts and client role by default
     await DB.queryAsync(`
     INSERT INTO user
-        (id, email, role, company_id, status, login_attempts, crypted_password)  
+        (id, email, role, company_id, status, login_attempts)  
     VALUES 
-        ("${user_id}","${email}", "${role}", "${company_id}", "${status}", 0, "${crypted_password}")    
+        ("${user_id}","${email}", "${role}", "${company_id}", "${status}",0)    
     `);
 
     // Send a welcome email when user is created

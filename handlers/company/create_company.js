@@ -48,6 +48,7 @@ async function create_company_handler(req, res, next) {
 
     const default_user = {
       email,
+
       company_id: id,
       role: "client",
       status: "waiting",
