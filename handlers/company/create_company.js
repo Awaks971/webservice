@@ -66,7 +66,9 @@ async function create_company_handler(req, res, next) {
       .status(200)
       .json({ message: "Company created successfully", company_id: id });
   } catch (err) {
-    return res.status(500).json({ message: err, error_code: "SQL_ERROR" });
+    return res
+      .status(500)
+      .json({ message: err.message, error_code: "SQL_ERROR" });
   }
 }
 

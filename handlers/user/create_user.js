@@ -59,7 +59,9 @@ async function create_user_handler({ user }) {
       message: "User successfully created"
     };
   } catch (err) {
-    return res.status(500).json({ message: err, error_code: "SQL_ERROR" });
+    return res
+      .status(500)
+      .json({ message: err.message, error_code: "SQL_ERROR" });
   }
 }
 
