@@ -55,7 +55,8 @@ async function create_company_handler(req, res, next) {
     };
 
     const { error_code, message } = await create_user_handler({
-      user: default_user
+      user: default_user,
+      res
     });
 
     if (error_code) {

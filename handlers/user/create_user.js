@@ -4,7 +4,7 @@ const send_admin_validation = require("../../mails/handlers/admin_validation");
 const bcrypt = require("bcryptjs");
 const uuid = require("uuid/v4");
 
-async function create_user_handler({ user }) {
+async function create_user_handler({ user, res }) {
   const {
     email,
     role = "client",
