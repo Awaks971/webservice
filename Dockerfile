@@ -1,5 +1,5 @@
 # Use the lightest version of NodeJS
-FROM node:10
+FROM node:latest
 
 RUN mkdir -p /usr/src/app/awaks-webservices
 # Specify working directory
