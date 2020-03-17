@@ -18,7 +18,7 @@
     "express-rate-limit": "^5.0.0",
     "helmet": "^3.21.2",
     "mariadb": "^2.1.5",
-    "mysql": "^2.17.1",
+    "mysql2": "^2.1.0",
     "nodemailer-promise": "^2.0.0",
     "pug": "^2.0.4",
     "uuid": "^3.4.0"

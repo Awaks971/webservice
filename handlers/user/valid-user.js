@@ -5,6 +5,7 @@ const bcrypt = require("bcryptjs");
 async function valid_user_handler(req, res) {
   const { userId, company_id } = req.body;
 
+  console.log("start");
   try {
     const uncrypted_password = Math.random()
       .toString(26)
@@ -15,6 +16,8 @@ async function valid_user_handler(req, res) {
     await DB.queryAsync(
       `UPDATE user SET status="validated", crypted_password="${crypted_password}" WHERE id="${userId}"`
     );
+
+    console.log("password updated");
 
     const [company] = await DB.queryAsync(
       `SELECT name FROM company WHERE id="${company_id}"`
@@ -30,6 +33,8 @@ async function valid_user_handler(req, res) {
       email: user.email,
       password: uncrypted_password
     });
+
+    console.log("email sended");
 
     return res.status(200).json({
       message: "User successfully updated"
