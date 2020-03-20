@@ -24,6 +24,10 @@ const create_store_handler = require("./handlers/store/create_store_handler");
 const user_verification_handler = require("./handlers/user/user_verification");
 const valid_user_handler = require("./handlers/user/valid-user");
 const lock_account_handler = require("./handlers/user/lock_user_account");
+const create_articles_handler = require("./handlers/article/create_article_handler");
+const create_families_handler = require("./handlers/family/create_families_handler");
+const create_sellers_handler = require("./handlers/seller/create_seller_handler");
+const create_supliers_handler = require("./handlers/suplier/create_supliers_handler.js");
 const login_hanlder = require("./handlers/user/login");
 
 const app = express();
@@ -83,6 +87,28 @@ app.post(
   user_verification_middleware,
   fill_payment_journals_handler
 );
+app.post(
+  "/webservice/fill-articles",
+  user_verification_middleware,
+  create_articles_handler
+);
+app.post(
+  "/webservice/fill-families",
+  user_verification_middleware,
+  create_families_handler
+);
+app.post(
+  "/webservice/fill-sellers",
+  user_verification_middleware,
+  create_sellers_handler
+);
+
+app.post(
+  "/webservice/fill-supliers",
+  user_verification_middleware,
+  create_supliers_handler
+);
+
 app.post("/webservice/lock-user-account", lock_account_handler);
 
 /**

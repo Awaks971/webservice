@@ -8,8 +8,6 @@ function insert_sql_builder(array, table) {
     clean_array = [clean_array];
   }
 
-  console.log(clean_array);
-
   const keys = clean_array.map(value => Object.keys(value))[0];
   const values = clean_array.map(value => Object.values(value));
 
