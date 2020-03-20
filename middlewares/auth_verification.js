@@ -6,7 +6,7 @@ async function user_verification_middleware(req, res, next) {
   if (!company_id) {
     res.status(500).json({
       message:
-        "No company_id provided. You have to send `company_id` field in you payload or in your payload array",
+        "No company_id provided. You have to send `company_id` field out of your payload",
       error_code: "BAD_PAYLOAD"
     });
     res.end();

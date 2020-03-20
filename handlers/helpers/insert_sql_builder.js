@@ -2,8 +2,16 @@
  * Display each keys to make a INSERT INTO query
  */
 function insert_sql_builder(array, table) {
-  const keys = array.map(value => Object.keys(value))[0];
-  const values = array.map(value => Object.values(value));
+  let clean_array = array;
+
+  if (!Array.isArray(clean_array)) {
+    clean_array = [clean_array];
+  }
+
+  console.log(clean_array);
+
+  const keys = clean_array.map(value => Object.keys(value))[0];
+  const values = clean_array.map(value => Object.values(value));
 
   let displayed_keys = "";
   keys.map((key, index) => {

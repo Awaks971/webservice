@@ -5,7 +5,7 @@ All of this handlers have to be executed with a POST method. They had approximat
 ## Vérifier la validité d'un utilisateur
 
 ```graphql
-# https://progys.me/check-company-validity - POST
+# https://360.awaks.fr/webservice/check-company-validity - POST
 {
     company_id: ID!,
 }
@@ -14,7 +14,7 @@ All of this handlers have to be executed with a POST method. They had approximat
 ## Société
 
 ```graphql
-# https://progys.me/create-company - POST
+# https://360.awaks.fr/webservice/create-company - POST
 {
     payload: {
         id: ID!                 # ID de la société
@@ -36,7 +36,7 @@ All of this handlers have to be executed with a POST method. They had approximat
 ## Magasin
 
 ```graphql
-# https://progys.me/create-store - POST
+# https://360.awaks.fr/webservice/create-store - POST
 {
     payload: {
         id: ID!                 # ID du magasin
@@ -56,7 +56,7 @@ All of this handlers have to be executed with a POST method. They had approximat
 ## Journal de caisses
 
 ```graphql
-# https://progys.me/fill-cash-journals - POST
+# https://360.awaks.fr/webservice/fill-cash-journals - POST
 {
     payload: {
         id: ID!                     # ID du journal de caisse
@@ -80,7 +80,7 @@ All of this handlers have to be executed with a POST method. They had approximat
 ## En-tête de tickets
 
 ```graphql
-# https://progys.me/fill-receipt-head - POST
+# https://360.awaks.fr/webservice/fill-receipt-head - POST
 {
     payload: [{
         id: ID!                     # ID du ticket
@@ -108,7 +108,7 @@ All of this handlers have to be executed with a POST method. They had approximat
 ## Lignes de tickets
 
 ```graphql
-# https://progys.me/fill-receipt-lines - POST
+# https://360.awaks.fr/webservice/fill-receipt-lines - POST
 {
     payload: [{
         id: ID!                     # ID du ticket
@@ -131,10 +131,8 @@ All of this handlers have to be executed with a POST method. They had approximat
         date: String                # Date du ticket
         company_id: ID              # ID de la société
         payment_choice: String      # Méthode paiement du produit
-        family_label: String        # Famille du produit
         family_id: String           # ID de la famille du produit
         seller_id: String           # ID du vendeur
-        seller_name: String         # Nom du vendeur
     }, { ... }],
     company_id: String!             # ID de la société --> Nécessaire a la vérification de chaque requêtes
 }
@@ -143,7 +141,7 @@ All of this handlers have to be executed with a POST method. They had approximat
 ## Journal de règlements
 
 ```graphql
-# https://progys.me/fill-payment-journals - POST
+# https://360.awaks.fr/webservice/fill-payment-journals - POST
 {
     payload: [{
         id: ID!                     # ID du mode de règlement
@@ -156,6 +154,88 @@ All of this handlers have to be executed with a POST method. They had approximat
         payment_label: String       # Libellé du règlement
         receipt_number: String      # Numéro du ticket
         date: String                # Date du règlement
+    }, { ... }],
+    company_id: String!             # ID de la société --> Nécessaire a la vérification de chaque requêtes
+}
+```
+
+## Articles
+
+```graphql
+# https://360.awaks.fr/webservice/fill-articles - POST
+{
+    payload: [{
+        id: ID!                     # ID du mode de règlement
+        store_id: ID                # ID du magasin
+        name: String                # Nom de l'article
+        amount_ttc: Float           # Montant TTC
+        amount_ht: Float            # Montant HT
+        amount_vat: Float           # Montant de la TVA
+        sold_count: Int             # Nombre de vente
+        generated_amount: Float     # Montant généré
+        date: String                # Date de dernière mise à jour
+        buy_count: Int              # Nombre d'achat
+        return_count: Int           # Nombre de retour
+        profit: Float               # Profit
+    }, { ... }],
+    company_id: String!             # ID de la société --> Nécessaire a la vérification de chaque requêtes
+}
+```
+
+## Familles
+
+```graphql
+# https://360.awaks.fr/webservice/fill-families - POST
+{
+    payload: [{
+        id: ID!                     # ID du mode de règlement
+        store_id: ID                # ID du magasin
+        name: String                # Nom de l'article
+        amount_ttc: Float           # Montant TTC
+        amount_ht: Float            # Montant HT
+        amount_vat: Float           # Montant de la TVA
+        date: String                # DateTime de dernière mise à jour (YYYY-MM-DD HH:MM:SS)
+        buy_count: Int              # Nombre d'achat
+        return_count: Int           # Nombre de retour
+        profit: Float               # Profit
+    }, { ... }],
+    company_id: String!             # ID de la société --> Nécessaire a la vérification de chaque requêtes
+}
+```
+
+## Vendeurs
+
+```graphql
+# https://360.awaks.fr/webservice/fill-sellers - POST
+{
+    payload: [{
+        id: ID!                     # ID du mode de règlement
+        store_id: ID                # ID du magasin
+        name: String                # Nom du vendeur
+        article_sold: Int           # Nombre d'article vendu
+        generated_amount: Float     # Montant généré
+        date: String                # DateTime de dernière mise à jour (YYYY-MM-DD HH:MM:SS)
+        buy_count: Int              # Nombre d'achat
+        return_count: Int           # Nombre de retour
+    }, { ... }],
+    company_id: String!             # ID de la société --> Nécessaire a la vérification de chaque requêtes
+}
+```
+
+## Fournisseurs
+
+```graphql
+# https://360.awaks.fr/webservice/fill-supliers - POST
+{
+    payload: [{
+        id: ID!                     # ID du mode de règlement
+        store_id: ID                # ID du magasin
+        name: String                # Nom du fournisseur
+        article_sold: Int           # Nombre d'article vendu
+        generated_amount: Float     # Montant généré
+        date: String                # DateTime de dernière mise à jour (YYYY-MM-DD HH:MM:SS)
+        buy_count: Int              # Nombre d'achat
+        return_count: Int           # Nombre de retour
     }, { ... }],
     company_id: String!             # ID de la société --> Nécessaire a la vérification de chaque requêtes
 }
