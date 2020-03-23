@@ -8,12 +8,8 @@ function insert_sql_builder(array, table) {
     wrapped_array = [wrapped_array];
   }
 
-  const clean_array = wrapped_array.map(key =>
-    !!key.date ? { ...key, date: new Date(key.date).getTime() } : { ...key }
-  );
-
-  const keys = clean_array.map(value => Object.keys(value))[0];
-  const values = clean_array.map(value => Object.values(value));
+  const keys = wrapped_array.map(value => Object.keys(value))[0];
+  const values = wrapped_array.map(value => Object.values(value));
 
   let displayed_keys = "";
   keys.map((key, index) => {

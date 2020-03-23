@@ -18,8 +18,6 @@ async function fill_cash_journals_handler(req, res) {
     receipt_count
   } = cash_journals;
 
-  const clean_date = typeof date === "string" ? new Date(date).getTime() : date;
-
   try {
     await DB.queryAsync(`
       INSERT INTO cash_journal 
