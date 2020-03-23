@@ -18,42 +18,8 @@ async function fill_cash_journals_handler(req, res) {
     receipt_count
   } = cash_journals;
 
-  const clean_date = typeof date === "string" ? parseInt(date) : date;
+  const clean_date = typeof date === "string" ? new Date(date).getTime() : date;
 
-  console.log(`
-  INSERT INTO cash_journal 
-      (
-        id,
-        store_id,
-        company_id,
-        date,
-        amount_ttc,
-        amount_ht,
-        discount_count,
-        basket_median,
-        canceled_lines,
-        profit_amount,
-        profit_rate,
-        article_count,
-        receipt_count
-      ) 
-  VALUES 
-      (
-        "${id}",
-        "${store_id}",
-        "${company_id}",
-        FROM_UNIXTIME(${clean_date}),
-        "${amount_ttc}",
-        "${amount_ht}",
-        "${discount_count}",
-        "${basket_median}",
-        "${canceled_lines}",
-        "${profit_amount}",
-        "${profit_rate}",
-        "${article_count}",
-        "${receipt_count}"
-      )
-`);
   try {
     await DB.queryAsync(`
       INSERT INTO cash_journal 
@@ -77,7 +43,7 @@ async function fill_cash_journals_handler(req, res) {
             "${id}",
             "${store_id}",
             "${company_id}",
-            FROM_UNIXTIME(${clean_date}),
+            ${clean_date},
             "${amount_ttc}",
             "${amount_ht}",
             "${discount_count}",

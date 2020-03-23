@@ -2,11 +2,15 @@
  * Display each keys to make a INSERT INTO query
  */
 function insert_sql_builder(array, table) {
-  let clean_array = array;
+  let wrapped_array = array;
 
-  if (!Array.isArray(clean_array)) {
-    clean_array = [clean_array];
+  if (!Array.isArray(wrapped_array)) {
+    wrapped_array = [wrapped_array];
   }
+
+  const clean_array = wrapped_array.map(key =>
+    !!key.date ? { ...key, date: new Date(key.date).getTime() } : { ...key }
+  );
 
   const keys = clean_array.map(value => Object.keys(value))[0];
   const values = clean_array.map(value => Object.values(value));
