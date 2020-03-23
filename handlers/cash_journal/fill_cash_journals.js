@@ -41,7 +41,7 @@ async function fill_cash_journals_handler(req, res) {
             "${id}",
             "${store_id}",
             "${company_id}",
-            ${clean_date},
+            "${date}",
             "${amount_ttc}",
             "${amount_ht}",
             "${discount_count}",
