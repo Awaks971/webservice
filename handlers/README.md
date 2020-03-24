@@ -259,17 +259,30 @@ Il faut toujours envoyer le meme structure (un payload et un champ `company_id`)
 
 - **tables**: `cash_journal`, `payment_journal`, `receipt_head`, `receipt_line`.
 - **elements**: Tous les éléments des payloads défini ci-dessus.
-- **conditions**: On ne peut demander qu'une condition par appelle --> `by_company`, `by_store`, `by_id`. A condition biensur que la condition soit éxécutable. Par exemple les journaux de paiements n'ont pas de `company_id`. Toujours vérifier les structures que l'ont appelle pour éviter les erreurs.
+- **conditions**: `by_company`, `by_store`, `by_id`, `by_range`. A condition biensur que la condition soit éxécutable. Par exemple les journaux de paiements n'ont pas de `company_id`. Toujours vérifier les structures que l'ont appelle pour éviter les erreurs.
 
 #### Exemple
 
 ```javascript
 {
-    payload: {
-        table: "cash_journal"
-        elements: ["id", "date"]
-        condition: { by_store: "THE_STORE_ID_RIGHT_HERE" }
-    },
-    company_id: "THE_COMPANY_ID_RIGHT_HERE"
-}
+  payload: {
+    table: "cash_journal",
+    elements: ["id", "date"],
+    conditions: [
+      {
+        by_company:
+          "4b069570ad3a94d39187c65a25cf075708d93174450635bffb96308c8d205081"
+      },
+      {
+        by_range: {
+          range: {
+            start: "2020-01-01",
+            end: "2020-03-01"
+          }
+        }
+      }
+    ]
+  },
+  company_id: "4b069570ad3a94d39187c65a25cf075708d93174450635bffb96308c8d205081"
+};
 ```
