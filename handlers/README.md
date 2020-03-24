@@ -240,3 +240,36 @@ All of this handlers have to be executed with a POST method. They had approximat
     company_id: String!             # ID de la société --> Nécessaire a la vérification de chaque requêtes
 }
 ```
+
+## Ressources
+
+Il faut toujours envoyer le meme structure (un payload et un champ `company_id`) necéssaire a la sécurité des webservices.
+
+```graphql
+# https://360.awaks.fr/webservice/get-ressources - POST
+{
+    payload: {
+        table: String
+        elements: [String]
+        condition: Object
+    },
+    company_id: String!             # ID de la société --> Nécessaire a la vérification de chaque requêtes
+}
+```
+
+- **tables**: `cash_journal`, `payment_journal`, `receipt_head`, `receipt_line`.
+- **elements**: Tous les éléments des payloads défini ci-dessus.
+- **conditions**: On ne peut demander qu'une condition par appelle. `by_company`, `by_store`, `by_id`
+
+#### Exemple
+
+```javascript
+{
+    payload: {
+        table: "cash_journal"
+        elements: ["id", "date"]
+        condition: { by_store: "THE_STORE_ID_RIGHT_HERE" }
+    },
+    company_id: "THE_COMPANY_ID_RIGHT_HERE"
+}
+```

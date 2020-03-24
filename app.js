@@ -16,6 +16,7 @@ const {
  * Handlers
  */
 const fill_cash_journals_handler = require("./handlers/cash_journal/fill_cash_journals");
+const get_ressources_handler = require("./handlers/helpers/select_sql_builder");
 const fill_payment_journals_handler = require("./handlers/payment_journal/fill_payment_journals");
 const create_receipt_head = require("./handlers/receipt/create_receipt_head");
 const create_receipt_lines = require("./handlers/receipt/create_receipt_lines");
@@ -107,6 +108,11 @@ app.post(
   "/webservice/fill-supliers",
   user_verification_middleware,
   create_supliers_handler
+);
+app.post(
+  "/webservice/get-ressources",
+  user_verification_middleware,
+  get_ressources_handler
 );
 
 app.post("/webservice/lock-user-account", lock_account_handler);
