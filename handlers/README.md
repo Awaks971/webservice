@@ -270,8 +270,7 @@ Il faut toujours envoyer le meme structure (un payload et un champ `company_id`)
     elements: ["id", "date"],
     conditions: [
       {
-        by_company:
-          "4b069570ad3a94d39187c65a25cf075708d93174450635bffb96308c8d205081"
+        by_company: "4b069570ad3a94d39187c65a25cf075708d93174450635bffb96308c8d205081"
       },
       {
         by_range: {
