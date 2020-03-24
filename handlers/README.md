@@ -259,7 +259,7 @@ Il faut toujours envoyer le meme structure (un payload et un champ `company_id`)
 
 - **tables**: `cash_journal`, `payment_journal`, `receipt_head`, `receipt_line`.
 - **elements**: Tous les éléments des payloads défini ci-dessus.
-- **conditions**: On ne peut demander qu'une condition par appelle. `by_company`, `by_store`, `by_id`
+- **conditions**: On ne peut demander qu'une condition par appelle --> `by_company`, `by_store`, `by_id`. A condition biensur que la condition soit éxécutable. Par exemple les journaux de paiements n'ont pas de `company_id`. Toujours vérifier les structures que l'ont appelle pour éviter les erreurs.
 
 #### Exemple
 

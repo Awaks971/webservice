@@ -1,10 +1,11 @@
 function select_sql_builder(table, selection, condition) {
-  const condition_key = Object.keys(condition)[0];
-  const condition_value = Object.values(condition)[0];
+  const condition_key = condition ? Object.keys(condition)[0] : null;
+  const condition_value = condition ? Object.values(condition)[0] : null;
 
   const possible_conditions = {
     by_company: company_id => `WHERE company_id=${company_id}`,
-    by_store: store_id => `WHERE store_id=${store_id}`
+    by_store: store_id => `WHERE store_id=${store_id}`,
+    by_id: id => `WHERE id=${id}`
   };
 
   let current_selection = "";

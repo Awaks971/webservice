@@ -16,7 +16,7 @@ const {
  * Handlers
  */
 const fill_cash_journals_handler = require("./handlers/cash_journal/fill_cash_journals");
-const get_ressources_handler = require("./handlers/helpers/select_sql_builder");
+const get_ressources_handler = require("./handlers/get_ressources");
 const fill_payment_journals_handler = require("./handlers/payment_journal/fill_payment_journals");
 const create_receipt_head = require("./handlers/receipt/create_receipt_head");
 const create_receipt_lines = require("./handlers/receipt/create_receipt_lines");
