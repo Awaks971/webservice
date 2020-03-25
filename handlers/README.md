@@ -251,7 +251,7 @@ Il faut toujours envoyer le meme structure (un payload et un champ `company_id`)
     payload: {
         table: String
         elements: [String]
-        condition: Object
+        condition: [Object]
     },
     company_id: String!             # ID de la société --> Nécessaire a la vérification de chaque requêtes
 }
