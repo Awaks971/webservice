@@ -3,8 +3,11 @@ function select_sql_builder(table, selection, conditions) {
     by_company: company_id => `company_id="${company_id}"`,
     by_store: store_id => `store_id="${store_id}"`,
     by_id: id => `id="${id}"`,
-    by_range: ({ start, end }) =>
-      `(${table}.date BETWEEN TIMESTAMP("${start}") AND TIMESTAMP("${end}"))`
+    by_range: ({ range }) => {
+      const start = new Date(range.start).toISOString();
+      const end = new Date(range.end).toISOString();
+      return `(date BETWEEN "${start}" AND "${end}")`;
+    }
   };
 
   let current_selection = "";
@@ -31,7 +34,6 @@ function select_sql_builder(table, selection, conditions) {
   }
 
   const query = `SELECT ${current_selection} FROM ${table} ${current_condition}`;
-
   return query;
 }
 
