@@ -1,5 +1,6 @@
 const DB = require("../../config/database");
 const insert_sql_builder = require("../helpers/insert_sql_builder");
+const update_sql_builder = require("../helpers/update_sql_builder");
 
 async function create_payment_journals(req, res, next) {
   const { payload: payment_journal } = req.body;

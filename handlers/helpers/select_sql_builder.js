@@ -1,10 +1,10 @@
-function select_sql_builder(table, selection, condition) {
+function select_sql_builder(table, selection, conditions) {
   const possible_conditions = {
     by_company: company_id => `company_id="${company_id}"`,
     by_store: store_id => `store_id="${store_id}"`,
     by_id: id => `id="${id}"`,
-    by_range: range =>
-      `date BETWEEN "${range.range.start}" AND "${range.range.end}"`
+    by_range: ({ range }) =>
+      `(${table}.date BETWEEN TIMESTAMP("${range.start}") AND TIMESTAMP("${range.end}"))`
   };
 
   let current_selection = "";
@@ -17,10 +17,10 @@ function select_sql_builder(table, selection, condition) {
     }
   }
   let current_condition = "";
-  for (let index = 0; index < condition.length; index++) {
-    const condition_key = condition ? Object.keys(condition[index])[0] : null;
-    const condition_value = condition
-      ? Object.values(condition[index])[0]
+  for (let index = 0; index < conditions.length; index++) {
+    const condition_key = conditions ? Object.keys(conditions[index])[0] : null;
+    const condition_value = conditions
+      ? Object.values(conditions[index])[0]
       : null;
     const current_element = possible_conditions[condition_key](condition_value);
 
