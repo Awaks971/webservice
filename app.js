@@ -23,6 +23,7 @@ const create_receipt_lines = require("./handlers/receipt/create_receipt_lines");
 const create_company_handler = require("./handlers/company/create_company");
 const create_store_handler = require("./handlers/store/create_store_handler");
 const user_verification_handler = require("./handlers/user/user_verification");
+const reset_password_handler = require("./handlers/user/reset_password");
 const valid_user_handler = require("./handlers/user/valid-user");
 const lock_account_handler = require("./handlers/user/lock_user_account");
 const create_articles_handler = require("./handlers/article/create_article_handler");
@@ -114,6 +115,7 @@ app.post(
   user_verification_middleware,
   get_ressources_handler
 );
+app.post("/webservice/reset-password", reset_password_handler);
 
 app.post("/webservice/lock-user-account", lock_account_handler);
 
