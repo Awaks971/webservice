@@ -5,6 +5,7 @@ require("dotenv").config();
  */
 const express = require("express");
 const path = require("path");
+var cors = require("cors");
 const helmet = require("helmet");
 const limiter = require("./middlewares/limiter");
 const {
@@ -23,7 +24,7 @@ const create_receipt_lines = require("./handlers/receipt/create_receipt_lines");
 const create_company_handler = require("./handlers/company/create_company");
 const create_store_handler = require("./handlers/store/create_store_handler");
 const user_verification_handler = require("./handlers/user/user_verification");
-const reset_password_handler = require("./handlers/user/reset_password");
+const reset_password_handler = require("./handlers/user/send_reset_password");
 const valid_user_handler = require("./handlers/user/valid-user");
 const lock_account_handler = require("./handlers/user/lock_user_account");
 const create_articles_handler = require("./handlers/article/create_article_handler");
@@ -37,6 +38,7 @@ const app = express();
 /**
  * Some security
  */
+app.use(cors());
 app.disable("x-powered-by");
 app.use(helmet());
 // app.use(limiter);

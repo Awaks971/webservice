@@ -59,9 +59,11 @@ async function send_email({
    * Return a promise with sended email informations
    */
   try {
+    console.log(to);
     const result = await transporter(mailOptions);
     return result;
   } catch (error) {
+    console.log(error);
     return error;
   }
 }

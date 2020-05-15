@@ -1,9 +1,9 @@
 const send_email = require("../transporter");
 
-async function reset_password({ email, token }) {
+async function send_reset_password({ email, token }) {
   console.log("Sending email...");
   await send_email({
-    to: "nicolas.leroy971@gmail.com",
+    to: email,
     subject: "Réinitialisation du mot de passe",
     template: "reset_password.pug",
     email_data: {
@@ -13,4 +13,4 @@ async function reset_password({ email, token }) {
   console.log("Email sended !");
 }
 
-module.exports = reset_password;
+module.exports = send_reset_password;
